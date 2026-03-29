@@ -1240,7 +1240,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4rem;
+      padding: 3rem;
       position: sticky;
       top: var(--nav-h);
       height: calc(100vh - var(--nav-h));
@@ -1271,6 +1271,19 @@
       gap: 0.5rem;
       cursor: none;
       transition: color 0.2s;
+    }
+
+    .mobile-back-bar {
+      display: none;
+      padding: 1rem 1.5rem;
+      background: var(--paper);
+      border-bottom: 1px solid var(--dust);
+    }
+
+    @media (max-width: 640px) {
+      .mobile-back-bar {
+        display: block;
+      }
     }
 
     .detail-back::before {
@@ -1949,10 +1962,11 @@
       }
 
       .detail-image-side {
+        padding: 1rem;
+        height: auto;
+        min-height: unset;
         position: relative;
-        height: 55vw;
-        min-height: 280px;
-        padding: 2rem;
+        top: 0;
       }
 
       .detail-info-side {
@@ -2299,7 +2313,7 @@
       }
 
       .detail-info-side {
-        padding: 2rem 1.2rem;
+        padding: 2rem 1.5rem 3rem;
       }
 
       .detail-title {
@@ -2588,7 +2602,7 @@
       // { "id": "p6", "title": "The Quiet Hours", "year": "2024", "medium": "Gouache on board", "dimensions": "16 x 12 inches", "category": "Gouache", "tags": ["interior", "solitude", "light"], "description": "A small, intimate study of morning light entering an empty room. The diffused quality of early light through muslin curtains creates a haze that softens every edge. A painting about the hour before the world makes its demands.", "thumb": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=600&q=80", "full": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=1200&q=90" }
       "artworks": [
         { "id": "a1", "title": "Residual Identity", "year": "2026", "medium": "Digital Art", "dimensions": "Variable", "category": "Abstract Art", "tags": ["abstract", "psychedelic", "pareidolia", "identity", "surreal"], "description": "A fleeting presence emerges within fluid gradients of magenta and yellow, something trying to become someone. The form suggests a face, but dissolves upon focus, as if he was there until you looked. Soft transitions and drifting contours evoke the instability of perception, where identity exists only momentarily, suspended between recognition and absence.", "thumb": "Images/IMG_28-03.png?w=600&q=80", "full": "Images/IMG_28-03.png?w=1200&q=90" },
-        { "id": "a2", "title": "Smoke & Mirrors", "year": "2026", "medium": "WebGL: Art as an Interaction", "dimensions": "Variable", "category": "Interactive Art", "tags": ["webgl", "interactive", "abstract", "psychedelic","generative"], "description": "An interactive WebGL experience where you become the artist. Move your cursor to generate fluid, smoky patterns in real time. A meditation on chaos, control and the beauty of emergence.", "thumb": "Images/IMG2026-03-28201525.png", "full": "Images/IMG2026-03-28201525.png", "link": "https://dowebgl.vercel.app/" },],
+        { "id": "a2", "title": "Smoke & Mirrors", "year": "2026", "medium": "WebGL: Art as an Interaction", "dimensions": "Variable", "category": "Interactive Art", "tags": ["webgl", "interactive", "abstract", "psychedelic", "generative"], "description": "An interactive WebGL experience where you become the artist. Move your cursor to generate fluid, smoky patterns in real time. A meditation on chaos, control and the beauty of emergence.", "thumb": "Images/IMG2026-03-28201525.png", "full": "Images/IMG2026-03-28201525.png", "link": "https://dowebgl.vercel.app/" },],
       // { "id": "a2", "title": "Study of Hands Series I", "year": "2023", "medium": "Graphite on cartridge paper", "dimensions": "14 x 11 inches", "category": "Graphite Study", "tags": ["anatomy", "hands", "study"], "description": "A series of graphite studies exploring the expressive potential of the human hand. Each drawing renders the subject at different states of tension and repose. Twelve sheets, shown here as the first in sequence.", "thumb": "https://images.unsplash.com/photo-1531685250784-7569952593d2?w=600&q=80", "full": "https://images.unsplash.com/photo-1531685250784-7569952593d2?w=1200&q=90" },
       // { "id": "a3", "title": "City Margins", "year": "2022", "medium": "Pen and ink on paper", "dimensions": "18 x 24 inches", "category": "Ink Drawing", "tags": ["urban", "lucknow", "architecture"], "description": "A dense pen-and-ink rendering of Lucknow's old city lanes, rickshaws, chai stalls, the fraying electric wires overhead. Drawn over several weeks from observation, not memory, it documents a city in quiet transition.", "thumb": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80", "full": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=90" },
       // { "id": "a4", "title": "Portrait of a Stranger", "year": "2024", "medium": "Charcoal on paper", "dimensions": "22 x 17 inches", "category": "Charcoal", "tags": ["portrait", "charcoal", "face"], "description": "A large charcoal portrait of an unknown figure encountered briefly. The face emerges from deep shadow, its features half-resolved as if being remembered rather than observed. The smudging is intentional, a representation of the unreliable witness.", "thumb": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=600&q=80", "full": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=1200&q=90" },
@@ -3089,7 +3103,7 @@
     function renderArtDetail(item, type) {
       return `
   <div class="page detail-page">
-    <div class="detail-hero">
+  <div class="detail-hero">
       <div class="detail-image-side">
         <img src="${item.full || item.thumb}" alt="${item.title}" />
       </div>
