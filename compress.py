@@ -70,7 +70,7 @@ if __name__ == "__main__":
     compress_images(
         input_folder="ok",
         output_folder="",  # set None to overwrite
-        quality=45,
+        quality=20,
         max_width=1920,
         max_height=1080,
         keep_format=True
