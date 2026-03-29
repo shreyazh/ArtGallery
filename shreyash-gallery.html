@@ -1,0 +1,3627 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Shreyash Srivastva, Artist &amp; Writer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    rel="stylesheet" />
+  <style>
+    /* =============================================
+   SHREYASH SRIVASTVA — GALLERY
+   Aesthetic: Editorial Brutalism meets Refined Ink
+   ============================================= */
+
+    :root {
+      --ink: #0e0d0b;
+      --paper: #f5f0e8;
+      --cream: #ede6d6;
+      --dust: #c8bfae;
+      --rust: #8b3a2a;
+      --gold: #c9a84c;
+      --slate: #3d3d3d;
+      --white: #fdfaf5;
+
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Cormorant Garamond', serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --nav-h: 64px;
+      --ease: cubic-bezier(0.76, 0, 0.24, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      cursor: none;
+      overflow-x: hidden;
+    }
+
+    /* ——— CUSTOM CURSOR ——— */
+    .cursor {
+      width: 8px;
+      height: 8px;
+      background: var(--rust);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s, width 0.3s var(--ease), height 0.3s var(--ease), background 0.3s;
+      mix-blend-mode: multiply;
+    }
+
+    .cursor-follower {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--rust);
+      border-radius: 50%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: transform 0.18s var(--ease), width 0.35s var(--ease), height 0.35s var(--ease), opacity 0.3s;
+      opacity: 0.6;
+    }
+
+    body:has(a:hover) .cursor,
+    body:has(button:hover) .cursor {
+      width: 16px;
+      height: 16px;
+    }
+
+    body:has(a:hover) .cursor-follower,
+    body:has(button:hover) .cursor-follower {
+      width: 56px;
+      height: 56px;
+      opacity: 0.3;
+    }
+
+    /* ——— NAV ——— */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2.5rem;
+      z-index: 500;
+      mix-blend-mode: normal;
+      transition: background 0.4s, backdrop-filter 0.4s;
+    }
+
+    .nav.scrolled {
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--dust);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 1.5rem;
+      color: var(--ink);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-tagline {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--slate);
+      text-transform: uppercase;
+    }
+
+    .nav-menu-btn {
+      background: none;
+      border: none;
+      cursor: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 8px;
+    }
+
+    .nav-menu-btn span {
+      display: block;
+      width: 28px;
+      height: 1.5px;
+      background: var(--ink);
+      transition: transform 0.4s var(--ease), opacity 0.3s;
+    }
+
+    .nav-menu-btn.active span:first-child {
+      transform: translateY(3.75px) rotate(45deg);
+    }
+
+    .nav-menu-btn.active span:last-child {
+      transform: translateY(-3.75px) rotate(-45deg);
+    }
+
+    /* ——— MENU OVERLAY ——— */
+    .menu-overlay {
+      position: fixed;
+      inset: 0;
+      background: var(--ink);
+      z-index: 400;
+      display: flex;
+      align-items: center;
+      clip-path: inset(0 0 100% 0);
+      transition: clip-path 0.8s var(--ease);
+    }
+
+    .menu-overlay.open {
+      clip-path: inset(0 0 0% 0);
+    }
+
+    .menu-inner {
+      width: 100%;
+      padding: 6rem 2.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .menu-link {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4.5vw, 3rem);
+      font-weight: 700;
+      color: var(--paper);
+      text-decoration: none;
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      line-height: 1.1;
+      transition: color 0.1s, transform 0.1s;
+      transform: translateX(-20px);
+      opacity: 0;
+    }
+
+    .menu-overlay.open .menu-link {
+      transform: translateX(0);
+      opacity: 1;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(1) {
+      transition-delay: 0.12s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(2) {
+      transition-delay: 0.17s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(3) {
+      transition-delay: 0.22s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(4) {
+      transition-delay: 0.27s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(5) {
+      transition-delay: 0.32s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(6) {
+      transition-delay: 0.37s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(7) {
+      transition-delay: 0.42s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(8) {
+      transition-delay: 0.47s;
+    }
+
+    .menu-overlay.open .menu-link:nth-child(9) {
+      transition-delay: 0.52s;
+    }
+
+    .menu-link:hover {
+      color: var(--gold);
+      transform: translateX(12px);
+    }
+
+    .menu-num {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--rust);
+      min-width: 2.5rem;
+    }
+
+    .menu-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      color: var(--dust);
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* ——— PAGE TRANSITIONS ——— */
+    #app {
+      min-height: 100vh;
+    }
+
+    .page {
+      animation: pageIn 0.7s var(--ease) forwards;
+    }
+
+    @keyframes pageIn {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ——— HERO ——— */
+    .hero {
+      height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      max-height: 100vh;
+      /* add this */
+    }
+
+    .hero-left {
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 20%, rgba(139, 58, 42, 0.3) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+    }
+
+    .hero-name em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .hero-desc {
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      color: var(--dust);
+      max-width: 380px;
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--dust);
+      letter-spacing: 0.15em;
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .hero-scroll-hint::after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 40px;
+      background: var(--dust);
+      animation: scrollLine 1.5s ease-in-out infinite;
+    }
+
+    @keyframes scrollLine {
+
+      0%,
+      100% {
+        transform: scaleY(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scaleY(0.4);
+        opacity: 0.4;
+      }
+    }
+
+    .hero-right {
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--dust);
+      height: 100vh;
+      /* add this */
+      max-height: 100vh;
+      /* add this */
+      overflow: hidden;
+      /* add this */
+    }
+
+    .hero-tile {
+      background: var(--cream);
+      overflow: hidden;
+      position: relative;
+      cursor: none;
+      min-height: 0;
+      /* add this */
+      min-width: 0;
+      /* add this */
+    }
+
+    .hero-tile:hover .hero-tile-img {
+      transform: scale(1.06);
+    }
+
+    .hero-tile-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: transform 0.7s var(--ease);
+    }
+
+    .hero-tile-label {
+      position: absolute;
+      bottom: 1rem;
+      left: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      background: var(--paper);
+      color: var(--ink);
+      padding: 0.2rem 0.5rem;
+      text-transform: uppercase;
+    }
+
+    /* ——— MARQUEE ——— */
+    .marquee-bar {
+      background: var(--ink);
+      color: var(--gold);
+      padding: 0.9rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .marquee-inner {
+      display: inline-block;
+      animation: marqueeScroll 28s linear infinite;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    @keyframes marqueeScroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* ——— SECTION LABEL ——— */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--dust);
+      max-width: 80px;
+    }
+
+    /* ——— FEATURED SECTION ——— */
+    .featured-section {
+      padding: 6rem 2.5rem;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 1.5rem;
+    }
+
+    .featured-card {
+      position: relative;
+      overflow: hidden;
+      background: var(--cream);
+      cursor: none;
+    }
+
+    .featured-card.large {
+      grid-row: span 2;
+    }
+
+    .featured-card-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.7s var(--ease);
+      filter: grayscale(20%);
+    }
+
+    .featured-card.large .featured-card-img {
+      aspect-ratio: 2/3;
+    }
+
+    .featured-card:hover .featured-card-img {
+      transform: scale(1.05);
+      filter: grayscale(0%);
+    }
+
+    .featured-card-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(14, 13, 11, 0.85));
+      color: var(--paper);
+      transform: translateY(0);
+    }
+
+    .featured-card-cat {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .featured-card-title {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .featured-card.large .featured-card-title {
+      font-size: 1.8rem;
+    }
+
+    /* ——— ABOUT STRIP ——— */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 70vh;
+      border-top: 1px solid var(--dust);
+      border-bottom: 1px solid var(--dust);
+    }
+
+    .about-strip-left {
+      padding: 5rem 3rem;
+      border-right: 1px solid var(--dust);
+    }
+
+    .about-strip-right {
+      background: var(--ink);
+      padding: 5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .about-big {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin-bottom: 2rem;
+    }
+
+    .about-big em {
+      font-style: italic;
+      color: var(--rust);
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      color: var(--dust);
+      line-height: 1.9;
+      font-weight: 300;
+      max-width: 420px;
+    }
+
+    .about-text.dark {
+      color: var(--dust);
+    }
+
+    .about-year {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--slate);
+      letter-spacing: 0.15em;
+      margin-top: 3rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.85rem 2rem;
+      background: transparent;
+      border: 1px solid var(--rust);
+      color: var(--rust);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: none;
+      transition: background 0.3s, color 0.3s, transform 0.3s;
+      margin-top: 2rem;
+    }
+
+    .btn:hover {
+      background: var(--rust);
+      color: var(--paper);
+      transform: translateX(4px);
+    }
+
+    .btn.light {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .btn.light:hover {
+      background: var(--gold);
+      color: var(--ink);
+    }
+
+    /* ——— QUOTE SECTION ——— */
+    .quote-section {
+      padding: 6rem 2.5rem;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .quote-mark {
+      font-family: var(--font-display);
+      font-size: 8rem;
+      color: var(--dust);
+      line-height: 0.5;
+      display: block;
+      margin-bottom: 1rem;
+    }
+
+    .quote-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-style: italic;
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+
+    .quote-attr {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-top: 2rem;
+    }
+
+    /* ——— CATEGORY GRID ——— */
+    .categories-section {
+      padding: 5rem 2.5rem;
+      background: var(--ink);
+    }
+
+    .categories-section .section-label {
+      color: var(--gold);
+    }
+
+    .categories-section .section-label::after {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .cat-card {
+      padding: 3rem 2rem;
+      background: var(--ink);
+      cursor: none;
+      transition: background 0.35s;
+      text-decoration: none;
+      display: block;
+    }
+
+    .cat-card:hover {
+      background: var(--rust);
+    }
+
+    .cat-card:hover .cat-num {
+      color: var(--paper);
+    }
+
+    .cat-num {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--rust);
+      letter-spacing: 0.15em;
+      margin-bottom: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .cat-name {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--paper);
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+
+    .cat-desc {
+      font-family: var(--font-body);
+      font-size: 0.92rem;
+      color: var(--dust);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .cat-arrow {
+      display: block;
+      margin-top: 2rem;
+      color: var(--gold);
+      font-size: 1.4rem;
+      transition: transform 0.3s;
+    }
+
+    .cat-card:hover .cat-arrow {
+      transform: translateX(8px);
+    }
+
+    /* ——— WRITING PREVIEW ——— */
+    .writing-section {
+      padding: 6rem 2.5rem;
+    }
+
+    .writing-list {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .writing-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: start;
+      gap: 2rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--dust);
+      cursor: none;
+      text-decoration: none;
+      color: var(--ink);
+      transition: background 0.2s;
+    }
+
+    .writing-item:first-child {
+      border-top: 1px solid var(--dust);
+    }
+
+    .writing-item:hover {
+      padding-left: 1.5rem;
+    }
+
+    .writing-item:hover .writing-title {
+      color: var(--rust);
+    }
+
+    .writing-cat {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.5rem;
+    }
+
+    .writing-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+      font-weight: 700;
+      line-height: 1.2;
+      transition: color 0.3s;
+    }
+
+    .writing-excerpt {
+      font-size: 0.95rem;
+      color: var(--slate);
+      margin-top: 0.5rem;
+      max-width: 600px;
+      font-weight: 300;
+    }
+
+    .writing-date {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      color: var(--dust);
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    /* ——— FOOTER ——— */
+    .footer {
+      background: var(--ink);
+      padding: 4rem 2.5rem 2rem;
+      color: var(--paper);
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .footer-brand-name {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .footer-brand-sub {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--dust);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.2rem;
+    }
+
+    .footer-col a {
+      display: block;
+      font-size: 0.95rem;
+      color: var(--dust);
+      text-decoration: none;
+      margin-bottom: 0.6rem;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--paper);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--dust);
+      letter-spacing: 0.1em;
+    }
+
+    /* ——— GALLERY PAGE ——— */
+    .gallery-hero {
+      height: 45vh;
+      background: var(--ink);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 4rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+      margin-top: var(--nav-h);
+    }
+
+    .gallery-hero::before {
+      content: attr(data-title);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 20vw;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.03);
+      white-space: nowrap;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    .gallery-hero-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      color: var(--rust);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .gallery-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .gallery-hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    /* ——— FILTERS ——— */
+    .filter-bar {
+      padding: 1.5rem 2.5rem;
+      border-bottom: 1px solid var(--dust);
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-right: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.35rem 1rem;
+      background: transparent;
+      border: 1px solid var(--dust);
+      color: var(--slate);
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--paper);
+    }
+
+    /* ——— MASONRY GRID ——— */
+    .masonry-section {
+      padding: 3rem 2.5rem 5rem;
+    }
+
+    .masonry-grid {
+      columns: 3;
+      column-gap: 1.2rem;
+    }
+
+    .masonry-item {
+      break-inside: avoid;
+      margin-bottom: 1.2rem;
+      position: relative;
+      overflow: hidden;
+      cursor: none;
+      background: var(--cream);
+    }
+
+    .masonry-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s var(--ease);
+      filter: grayscale(15%);
+    }
+
+    .masonry-item:hover img {
+      transform: scale(1.04);
+      filter: grayscale(0%);
+    }
+
+    .masonry-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(transparent 50%, rgba(14, 13, 11, 0.9) 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 1.5rem;
+      color: var(--paper);
+    }
+
+    .masonry-item:hover .masonry-overlay {
+      opacity: 1;
+    }
+
+    .masonry-overlay-cat {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .masonry-overlay-title {
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    /* ——— POETRY LIST ——— */
+    .poetry-list {
+      padding: 3rem 2.5rem 5rem;
+    }
+
+    .poem-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 2.5rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--dust);
+      cursor: none;
+      text-decoration: none;
+      color: var(--ink);
+      align-items: start;
+    }
+
+    .poem-card:first-child {
+      border-top: 1px solid var(--dust);
+    }
+
+    .poem-card:hover .poem-title {
+      color: var(--rust);
+    }
+
+    .poem-num {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--dust);
+      letter-spacing: 0.15em;
+      margin-bottom: 0.5rem;
+    }
+
+    .poem-card-left {
+      padding-right: 2rem;
+      border-right: 1px solid var(--dust);
+    }
+
+    .poem-date {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--rust);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .poem-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+      transition: color 0.3s;
+    }
+
+    .poem-preview {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 1rem;
+      color: var(--slate);
+      line-height: 1.8;
+      font-weight: 300;
+    }
+
+    .poem-theme {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--paper);
+      background: var(--rust);
+      padding: 0.2rem 0.6rem;
+      margin-top: 1rem;
+    }
+
+    /* ——— ESSAY LIST ——— */
+    .essay-list {
+      padding: 3rem 2.5rem 5rem;
+    }
+
+    .essay-card {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--dust);
+      cursor: none;
+      text-decoration: none;
+      color: var(--ink);
+    }
+
+    .essay-card:first-child {
+      border-top: 1px solid var(--dust);
+    }
+
+    .essay-card:hover .essay-title {
+      color: var(--rust);
+    }
+
+    .essay-type {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.6rem;
+    }
+
+    .essay-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.2rem, 2.8vw, 1.9rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .essay-excerpt {
+      font-size: 0.95rem;
+      color: var(--slate);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    .essay-meta {
+      text-align: right;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      align-items: flex-end;
+      padding-top: 0.3rem;
+    }
+
+    .essay-meta span {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--dust);
+      letter-spacing: 0.1em;
+    }
+
+    .essay-readtime {
+      background: var(--cream);
+      padding: 0.3rem 0.7rem;
+      border: 1px solid var(--dust);
+      color: var(--slate) !important;
+    }
+
+    /* ——— DETAIL PAGE ——— */
+    .detail-page {
+      padding-top: var(--nav-h);
+    }
+
+    .detail-hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - var(--nav-h));
+    }
+
+    .detail-image-side {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem;
+      position: sticky;
+      top: var(--nav-h);
+      height: calc(100vh - var(--nav-h));
+    }
+
+    .detail-image-side img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .detail-info-side {
+      padding: 5rem 4rem;
+      border-left: 1px solid var(--dust);
+      overflow-y: auto;
+    }
+
+    .detail-back {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dust);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: none;
+      transition: color 0.2s;
+    }
+
+    .detail-back::before {
+      content: "←";
+      margin-right: 0.3rem;
+    }
+
+    .detail-back:hover {
+      color: var(--gold);
+    }
+
+    .detail-eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 1rem;
+    }
+
+    .detail-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 2rem;
+    }
+
+    .detail-title em {
+      font-style: italic;
+    }
+
+    .detail-meta-row {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2.5rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--dust);
+    }
+
+    .detail-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .detail-meta-label {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--dust);
+    }
+
+    .detail-meta-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .detail-description {
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: black;
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    .detail-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .detail-tag {
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rust);
+      border: 1px solid var(--rust);
+      padding: 0.25rem 0.7rem;
+    }
+
+    /* ——— POEM DETAIL ——— */
+    .poem-detail-content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem;
+    }
+
+    .poem-full-text {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-style: italic;
+      line-height: 2.2;
+      color: var(--ink);
+      font-weight: 400;
+      white-space: pre-line;
+    }
+
+    .poem-full-text p {
+      margin-bottom: 2rem;
+    }
+
+    /* ——— ESSAY DETAIL ——— */
+    .essay-detail {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 4rem 2.5rem 6rem;
+    }
+
+    .essay-detail-body {
+      font-size: 1.1rem;
+      line-height: 1.95;
+      color: var(--slate);
+      font-weight: 300;
+    }
+
+    .essay-detail-body p {
+      margin-bottom: 1.8rem;
+    }
+
+    .essay-detail-body h2 {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin: 3rem 0 1rem;
+    }
+
+    .essay-detail-body blockquote {
+      border-left: 3px solid var(--rust);
+      padding-left: 1.5rem;
+      font-style: italic;
+      color: var(--ink);
+      margin: 2rem 0;
+    }
+
+    /* ——— ABOUT PAGE ——— */
+    .about-page {
+      padding-top: var(--nav-h);
+    }
+
+    .about-page-hero {
+      height: 60vh;
+      background: var(--ink);
+      display: flex;
+      align-items: flex-end;
+      padding: 4rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-page-hero::before {
+      content: 'ABOUT';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-display);
+      font-size: 20vw;
+      font-weight: 900;
+      color: rgba(255, 255, 255, 0.025);
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    .about-page-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .about-page-hero-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .about-text-col {
+      padding: 5rem 4rem;
+      border-right: 1px solid var(--dust);
+    }
+
+    .about-sidebar {
+      padding: 5rem 3rem;
+    }
+
+    .about-body {
+      font-size: 1.08rem;
+      line-height: 1.95;
+      color: var(--slate);
+      font-weight: 300;
+      max-width: 520px;
+    }
+
+    .about-body p {
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .about-stat {
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--dust);
+    }
+
+    .about-stat-num {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--rust);
+      line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+
+    .about-stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    /* ——— CONTACT PAGE ——— */
+    .contact-page {
+      padding-top: var(--nav-h);
+    }
+
+    .contact-hero {
+      height: 40vh;
+      background: var(--ink);
+      display: flex;
+      align-items: flex-end;
+      padding: 4rem 2.5rem;
+    }
+
+    .contact-hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 6vw, 5.5rem);
+      font-weight: 900;
+      color: var(--paper);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+    }
+
+    .contact-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .contact-form-col {
+      padding: 5rem 4rem;
+      border-right: 1px solid var(--dust);
+    }
+
+    .contact-info-col {
+      padding: 5rem 3rem;
+    }
+
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-bottom: 0.6rem;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 0.9rem 0;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--dust);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 1.05rem;
+      outline: none;
+      transition: border-color 0.3s;
+      cursor: none;
+    }
+
+    .form-input:focus {
+      border-color: var(--rust);
+    }
+
+    .form-input::placeholder {
+      color: var(--dust);
+    }
+
+    textarea.form-input {
+      resize: none;
+      min-height: 140px;
+      line-height: 1.7;
+    }
+
+    .btn-submit {
+      padding: 1rem 3rem;
+      background: var(--ink);
+      color: var(--paper);
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: none;
+      transition: background 0.3s, transform 0.3s;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .btn-submit:hover {
+      background: var(--rust);
+      transform: translateX(4px);
+    }
+
+    .contact-info-item {
+      margin-bottom: 3rem;
+    }
+
+    .contact-info-label {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-info-value {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ——— BOOKS PAGE ——— */
+    .books-grid {
+      padding: 3rem 2.5rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .book-card {
+      cursor: none;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+    }
+
+    .book-card:hover .book-cover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 48px rgba(14, 13, 11, 0.18);
+    }
+
+    .book-cover {
+      aspect-ratio: 3/4;
+      background: var(--cream);
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+      transition: transform 0.4s var(--ease), box-shadow 0.4s;
+      position: relative;
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .book-cover-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .book-cover-placeholder-text {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+      font-style: italic;
+    }
+
+    .book-genre {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.4rem;
+    }
+
+    .book-title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+      transition: color 0.3s;
+    }
+
+    .book-card:hover .book-title {
+      color: var(--rust);
+    }
+
+    .book-year {
+      font-family: var(--font-mono);
+      font-size: 0.65rem;
+      color: var(--dust);
+      letter-spacing: 0.1em;
+    }
+
+    /* ——— LETTERS PAGE ——— */
+    .letters-grid {
+      padding: 3rem 2.5rem 5rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
+
+    .letter-card {
+      background: var(--cream);
+      padding: 2.5rem;
+      cursor: none;
+      text-decoration: none;
+      color: var(--ink);
+      display: block;
+      border: 1px solid transparent;
+      transition: border-color 0.3s, transform 0.3s;
+      position: relative;
+    }
+
+    .letter-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 0;
+      background: var(--rust);
+      transition: height 0.4s var(--ease);
+    }
+
+    .letter-card:hover::before {
+      height: 100%;
+    }
+
+    .letter-card:hover {
+      border-color: var(--rust);
+      transform: translateX(4px);
+    }
+
+    .letter-type {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--rust);
+      margin-bottom: 0.6rem;
+    }
+
+    .letter-title {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      transition: color 0.3s;
+    }
+
+    .letter-card:hover .letter-title {
+      color: var(--rust);
+    }
+
+    .letter-excerpt {
+      font-size: 0.95rem;
+      color: var(--slate);
+      line-height: 1.75;
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+    }
+
+    .letter-meta {
+      font-family: var(--font-mono);
+      font-size: 0.62rem;
+      color: var(--dust);
+      letter-spacing: 0.1em;
+      display: flex;
+      justify-content: space-between;
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--dust);
+    }
+
+
+    /* ==============================
+   RESPONSIVE — COMPREHENSIVE FIX
+   ============================== */
+
+    /* ——— TABLET (max 1024px) ——— */
+    @media (max-width: 1024px) {
+
+      /* Nav */
+      .nav {
+        padding: 0 1.5rem;
+      }
+
+      .nav-tagline {
+        font-size: 0.58rem;
+      }
+
+      /* Hero */
+      .hero {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+      }
+
+      .hero-left {
+        min-height: 60vh;
+        padding: 3rem 2rem 4rem;
+      }
+
+      .hero-right {
+        height: 45vw;
+        min-height: 260px;
+      }
+
+      /* Featured */
+      .featured-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .featured-card.large {
+        grid-column: span 2;
+      }
+
+      /* About strip */
+      .about-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .about-strip-left {
+        padding: 4rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--dust);
+      }
+
+      .about-strip-right {
+        min-height: unset;
+        padding: 4rem 2rem;
+      }
+
+      @media (max-width: 640px) {
+        .about-strip {
+          display: flex;
+          flex-direction: column;
+        }
+      }
+
+      /* Quote */
+      .quote-section {
+        padding: 4rem 2rem;
+      }
+
+      /* Categories */
+      .categories-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .cat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .cat-card {
+        padding: 2rem 1.5rem;
+      }
+
+      /* Writing */
+      .writing-section {
+        padding: 4rem 1.5rem;
+      }
+
+      /* Gallery hero */
+      .gallery-hero {
+        padding: 3rem 1.5rem;
+      }
+
+      /* Filter */
+      .filter-bar {
+        padding: 1.2rem 1.5rem;
+      }
+
+      /* Masonry */
+      .masonry-section {
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      .masonry-grid {
+        columns: 2;
+        column-gap: 1rem;
+      }
+
+      .masonry-item {
+        margin-bottom: 1rem;
+      }
+
+      /* Poetry */
+      .poetry-list {
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      .poem-card {
+        gap: 1.5rem;
+        padding: 2rem 0;
+      }
+
+      /* Essays */
+      .essay-list {
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      .essay-card {
+        gap: 1.5rem;
+      }
+
+      /* Books */
+      .books-grid {
+        padding: 2rem 1.5rem 4rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      /* Letters */
+      .letters-grid {
+        padding: 2rem 1.5rem 4rem;
+      }
+
+      /* Detail pages */
+      .detail-hero {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-image-side {
+        position: relative;
+        height: 55vw;
+        min-height: 280px;
+        padding: 2rem;
+      }
+
+      .detail-info-side {
+        padding: 3rem 2rem;
+        border-left: none;
+        border-top: 1px solid var(--dust);
+      }
+
+      /* About page */
+      .about-page-hero {
+        padding: 3rem 1.5rem;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-text-col {
+        padding: 3rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--dust);
+      }
+
+      .about-sidebar {
+        padding: 3rem 2rem;
+      }
+
+      .about-stat-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+
+      .about-stat {
+        padding-bottom: 1.5rem;
+      }
+
+      /* Contact */
+      .contact-hero {
+        padding: 3rem 1.5rem;
+      }
+
+      .contact-body {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-form-col {
+        padding: 3rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--dust);
+      }
+
+      .contact-info-col {
+        padding: 3rem 2rem;
+      }
+
+      /* Footer */
+      .footer {
+        padding: 3rem 1.5rem 1.5rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .footer-brand-name {
+        font-size: 2rem;
+      }
+
+      /* Book detail */
+      .detail-hero[style] {
+        display: block;
+      }
+    }
+
+    /* ——— MOBILE (max 640px) ——— */
+    @media (max-width: 640px) {
+      :root {
+        --nav-h: 56px;
+      }
+
+      /* Nav */
+      .nav {
+        padding: 0 1.2rem;
+      }
+
+      .nav-logo {
+        font-size: 1.25rem;
+      }
+
+      .nav-tagline {
+        display: none;
+      }
+
+      /* Hero */
+      .hero {
+        grid-template-rows: auto auto;
+      }
+
+      .hero-left {
+        min-height: 75vw;
+        padding: 2rem 1.2rem 3rem;
+      }
+
+      .hero-right {
+        height: 55vw;
+        min-height: 220px;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-name {
+        font-size: clamp(2.8rem, 12vw, 4rem);
+      }
+
+      .hero-desc {
+        font-size: 0.95rem;
+      }
+
+      .hero-scroll-hint {
+        display: none;
+      }
+
+      /* Marquee */
+      .marquee-bar {
+        padding: 0.7rem 0;
+      }
+
+      /* Featured */
+      .featured-section {
+        padding: 3rem 1.2rem;
+      }
+
+      .featured-grid {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+      }
+
+      .featured-card.large {
+        grid-column: unset;
+      }
+
+      .featured-card-title {
+        font-size: 1rem;
+      }
+
+      .featured-card.large .featured-card-title {
+        font-size: 1.3rem;
+      }
+
+      /* About strip */
+      .about-strip-left {
+        padding: 3rem 1.2rem;
+      }
+
+      .about-strip-right {
+        padding: 3rem 1.2rem;
+      }
+
+      .about-big {
+        font-size: clamp(2.2rem, 9vw, 3rem);
+      }
+
+      .about-text {
+        font-size: 0.95rem;
+      }
+
+      /* Quote */
+      .quote-section {
+        padding: 3rem 1.2rem;
+      }
+
+      .quote-mark {
+        font-size: 5rem;
+      }
+
+      .quote-text {
+        font-size: clamp(1.3rem, 5vw, 1.8rem);
+      }
+
+      /* Categories */
+      .categories-section {
+        padding: 3rem 1.2rem;
+      }
+
+      .cat-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .cat-card {
+        padding: 1.8rem 1.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .cat-name {
+        font-size: 1.35rem;
+      }
+
+      .cat-desc {
+        font-size: 0.85rem;
+      }
+
+      /* Writing */
+      .writing-section {
+        padding: 3rem 1.2rem;
+      }
+
+      .writing-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 1.8rem 0;
+      }
+
+      .writing-title {
+        font-size: 1.2rem;
+      }
+
+      .writing-date {
+        font-size: 0.6rem;
+      }
+
+      /* Gallery hero */
+      .gallery-hero {
+        padding: 2.5rem 1.2rem;
+        min-height: 35vh;
+      }
+
+      .gallery-hero-title {
+        font-size: clamp(2.5rem, 11vw, 3.5rem);
+      }
+
+      .gallery-hero::before {
+        font-size: 35vw;
+      }
+
+      /* Filters */
+      .filter-bar {
+        padding: 1rem 1.2rem;
+        gap: 0.5rem;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .filter-bar::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+
+      /* Masonry */
+      .masonry-section {
+        padding: 1.5rem 1.2rem 3rem;
+      }
+
+      .masonry-grid {
+        columns: 1;
+      }
+
+      .masonry-item {
+        margin-bottom: 0.8rem;
+      }
+
+      /* Poetry */
+      .poetry-list {
+        padding: 1.5rem 1.2rem 3rem;
+      }
+
+      .poem-card {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 1.8rem 0;
+      }
+
+      .poem-card-left {
+        padding-right: 0;
+        border-right: none;
+        border-bottom: 1px solid var(--dust);
+        padding-bottom: 0.8rem;
+        display: flex;
+        gap: 1.5rem;
+        align-items: center;
+      }
+
+      .poem-title {
+        font-size: clamp(1.2rem, 5vw, 1.6rem);
+      }
+
+      /* Essays */
+      .essay-list {
+        padding: 1.5rem 1.2rem 3rem;
+      }
+
+      .essay-card {
+        grid-template-columns: 1fr;
+        gap: 0.8rem;
+        padding: 1.8rem 0;
+      }
+
+      .essay-meta {
+        text-align: left;
+        align-items: flex-start;
+        flex-direction: row;
+        gap: 1rem;
+      }
+
+      .essay-title {
+        font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+      }
+
+      /* Books */
+      .books-grid {
+        padding: 1.5rem 1.2rem 3rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+
+      .book-title {
+        font-size: 1rem;
+      }
+
+      /* Letters */
+      .letters-grid {
+        padding: 1.5rem 1.2rem 3rem;
+        grid-template-columns: 1fr;
+      }
+
+      .letter-card {
+        padding: 1.8rem 1.2rem;
+      }
+
+      .letter-title {
+        font-size: 1.2rem;
+      }
+
+      /* Detail pages */
+      .detail-image-side {
+        height: 70vw;
+        padding: 1.2rem;
+      }
+
+      .detail-info-side {
+        padding: 2rem 1.2rem;
+      }
+
+      .detail-title {
+        font-size: clamp(1.6rem, 7vw, 2.5rem);
+      }
+
+      .detail-meta-row {
+        gap: 1rem;
+      }
+
+      .detail-tags {
+        gap: 0.4rem;
+      }
+
+      .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.65rem;
+      }
+
+      /* Poem detail */
+      .poem-detail-content {
+        padding: 3rem 1.2rem;
+      }
+
+      .poem-full-text {
+        font-size: 1.1rem;
+        line-height: 2;
+      }
+
+      /* Essay detail */
+      .essay-detail {
+        padding: 3rem 1.2rem 4rem;
+      }
+
+      .essay-detail-body {
+        font-size: 1rem;
+        line-height: 1.85;
+      }
+
+      .essay-detail-body h2 {
+        font-size: 1.4rem;
+      }
+
+      /* About page */
+      .about-page-hero {
+        min-height: 40vh;
+        padding: 2.5rem 1.2rem;
+      }
+
+      .about-page-hero-title {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+      }
+
+      .about-text-col {
+        padding: 2.5rem 1.2rem;
+      }
+
+      .about-sidebar {
+        padding: 2.5rem 1.2rem;
+      }
+
+      .about-stat-list {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.2rem;
+      }
+
+      .about-stat-num {
+        font-size: 2.5rem;
+      }
+
+      .about-big {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+      }
+
+      /* Contact page */
+      .contact-hero {
+        min-height: 30vh;
+        padding: 2.5rem 1.2rem;
+      }
+
+      .contact-hero-title {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+      }
+
+      .contact-form-col {
+        padding: 2.5rem 1.2rem;
+      }
+
+      .contact-info-col {
+        padding: 2rem 1.2rem;
+      }
+
+      .contact-info-item {
+        margin-bottom: 2rem;
+      }
+
+      .contact-info-value {
+        font-size: 1rem;
+      }
+
+      /* Menu overlay */
+      .menu-inner {
+        padding: 5rem 1.5rem 2rem;
+      }
+
+      .menu-link {
+        font-size: clamp(1.8rem, 8vw, 2.8rem);
+        gap: 1rem;
+      }
+
+      .menu-num {
+        font-size: 0.65rem;
+        min-width: 2rem;
+      }
+
+      .menu-footer {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+
+      /* Section label */
+      .section-label {
+        font-size: 0.6rem;
+      }
+
+      /* Footer mobile - compact */
+      .footer {
+        padding: 2rem 1.2rem 1rem;
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem 1rem;
+      }
+
+      .footer-top>div:first-child {
+        grid-column: 1 / -1;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .footer-brand-name {
+        font-size: 1.5rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .footer-brand-sub {
+        font-size: 0.58rem;
+        line-height: 1.6;
+      }
+
+      .footer-col-title {
+        font-size: 0.6rem;
+        margin-bottom: 0.6rem;
+      }
+
+      .footer-col a {
+        font-size: 0.82rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+        padding-top: 1rem;
+        margin-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        font-size: 0.58rem;
+      }
+
+      /* Book detail page */
+      .book-detail-grid {
+        display: block !important;
+      }
+
+      .book-detail-cover {
+        position: relative !important;
+        height: auto !important;
+        padding: 3rem 2rem !important;
+      }
+    }
+
+    /* ——— VERY SMALL (max 380px) ——— */
+    @media (max-width: 380px) {
+      .hero-name {
+        font-size: 2.5rem;
+      }
+
+      .gallery-hero-title {
+        font-size: 2.2rem;
+      }
+
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stat-list {
+        grid-template-columns: 1fr;
+      }
+
+      .essay-meta {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .hero {
+        height: auto;
+        /* remove fixed height on mobile */
+      }
+
+      .hero-right {
+        height: 55vw;
+        min-height: 220px;
+        max-height: none;
+        /* add this */
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .hero-right {
+        height: 45vw;
+        min-height: 260px;
+        max-height: none;
+        /* add this */
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+  <nav class="nav" id="nav">
+    <div class="nav-left"><a href="#" class="nav-logo" data-page="home">SS</a></div>
+    <div class="nav-center"><span class="nav-tagline">Artist &middot; Writer &middot; Poet</span></div>
+    <div class="nav-right"><button class="nav-menu-btn" id="menuBtn"><span></span><span></span></button></div>
+  </nav>
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-inner">
+      <div class="menu-links">
+        <a href="#" class="menu-link" data-page="home"><span class="menu-num">01</span>Home</a>
+        <a href="#" class="menu-link" data-page="photography"><span class="menu-num">02</span>Photography</a>
+        <a href="#" class="menu-link" data-page="artworks"><span class="menu-num">03</span>Artworks</a>
+        <a href="#" class="menu-link" data-page="poetry"><span class="menu-num">04</span>Poetry</a>
+        <a href="#" class="menu-link" data-page="books"><span class="menu-num">05</span>Books</a>
+        <a href="#" class="menu-link" data-page="essays"><span class="menu-num">06</span>Essays &amp; Articles</a>
+        <a href="#" class="menu-link" data-page="letters"><span class="menu-num">07</span>Letters &amp; Blogs</a>
+        <a href="#" class="menu-link" data-page="about"><span class="menu-num">08</span>About</a>
+        <a href="#" class="menu-link" data-page="contact"><span class="menu-num">09</span>Contact</a>
+      </div>
+      <div class="menu-footer">
+        <p>&#169; 2026 Shreyash Srivastva</p>
+        <p>Lucknow, India</p>
+      </div>
+    </div>
+  </div>
+  <main id="app"></main>
+  <script>
+    const DATA = {
+      "photographs": [
+        { "id": "p1", "title": "The Silent Curator", "year": "2026", "medium": "The Creator", "dimensions": "1206 x 1460", "category": ["Self-Portrait", "Maximalism", "Slice of Life"], "tags": ["shreyash srivastva", "perspective", "documentation", "heritage"], "description": "A self-referential study of the act of preservation. The silhouette of Shreyash Srivastva is framed against a rich tapestry of cultural icons, exploring the creator's role as a bridge between ancient tradition and the digital eye. A meditation on witness and scale.", "thumb": "IMG_20260328_231040.jpg", "full": "IMG_20260328_231040.jpg" },
+        { "id": "p2", "title": "The Fractured Zen", "year": "2026", "medium": "Documentary Fine Art Photography", "dimensions": "2686 x 4012", "category": ["Minimalism", "Heritage"], "tags": ["spirituality", "ancient", "texture", "monolithic"], "description": "A close-up study of an ancient stone Buddha head. The photograph explores the theme of 'perfect imperfection,' where the weathering of the stone and the visible damage to the features only enhance the serene, meditative expression of the subject. A dialogue between the fragility of material and the permanence of spirit.", "thumb": "IMG_20260329_002749.jpg", "full": "IMG_20260329_002749.jpg" },
+        { "id": "p3", "title": "Net of Indra", "year": "2026", "medium": "Abstract Installation Photography", "dimensions": "1158 x 1314", "category": ["Abstract"], "tags": ["abstract", "geometry", "installation", "pattern"], "description": "A rhythmic study of suspended forms and their overlapping shadows. The composition explores the moiré effect created by mesh structures, evoking a sense of interconnectedness and weightless vibration. It captures the tension between the physical grid and the ethereal patterns it projects.", "thumb": "IMG_20260328_233112.jpg", "full": "IMG_20260328_233112.jpg" },
+        { "id": "p4", "title": "Eternal Gaze", "year": "2026", "medium": "Museum Fine Art Photography", "dimensions": "1584 x 2780", "category": ["Minimalism", "Heritage"], "tags": ["buddha", "serenity", "texture", "heritage", "minimalism"], "description": "A study in meditative stillness. The weathered texture of the stone Buddha head suggests a dialogue between material fragility and spiritual permanence, grounded by the warm, linear grain of a wooden base.", "thumb": "IMG_20260329_123003.jpg", "full": "IMG_20260329_123003.jpg" },
+        { "id": "p5", "title": "Defining the Void", "year": "2026", "medium": "Monochrome Photography", "dimensions": "3072 x 4096", "category": ["Minimalism", "Typography", "Monochrome"], "tags": ["typography", "minimalism", "architecture", "monochrome"], "description": "A study of negative space and architectural typography. By capturing a dictionary definition of 'Indigo' in high-contrast black and white, the work explores the tension between language and visual perception. The geometric ascent of the stairs provides a grounding contrast to the ethereal white expanse.", "thumb": "IMG_20260329_000840.jpg", "full": "IMG_20260329_000840.jpg" },
+        { "id": "p6", "title": "The Architect of Systems", "year": "2026", "medium": "High-Contrast Digital Monochrome", "dimensions": "1200 x 1600", "category": ["Self-Portrait", "Minimalism"], "tags": ["shreyash srivastva", "monochrome", "portrait", "geometry"], "description": "A stark exploration of identity and focus. This self-portrait utilizes extreme chiaroscuro to highlight the structural intersection of the human form and the sharp geometry of eyewear, embodying the analytical spirit of the creator.", "thumb": "IMG_20260216_190929.jpg", "file": "IMG_20260216_190929.jpg" },
+        { "id": "p7", "title": "Vighnaharta", "year": "2026", "medium": "High-Key Monochrome Photography", "dimensions": "418 x 1608", "category": ["Minimalism", "Monochrome", "Heritage"], "tags": ["ganesha", "spirituality", "monochrome", "minimalism"], "description": "A minimalist study of a bronze Ganesha idol captured in high-key monochrome. By isolating the dark, textured metal against a void of white, the piece strips away the physical context to focus on the timeless, sacred form. A meditation on stillness and primordial presence.", "thumb": "IMG_20260329_012638.jpg", "full": "IMG_20260329_012638.jpg" },
+        { "id": "p8", "title": "The Toad of Abu", "year": "2026", "medium": "Natural Light Capture", "dimensions": "3072 x 4096", "category": ["Environmental"], "tags": ["geology", "monolith", "toad rock", "rajasthan", "nature"], "description": "A low-angle study of the iconic Toad Rock in Mount Abu. The composition emphasizes the sentient, lifelike quality of the weathered granite formation, contrasting its heavy, archaic presence against the lightness of the Rajasthan sky. A capture of nature’s accidental sculpture.", "thumb": "IMG20260131174745.jpg", "full": "IMG20260131174745.jpg" },
+        { "id": "p9", "title": "The Verdant Gaze", "year": "2026", "medium": "High-Key Digital Monochrome", "dimensions": "3072 x 4096", "category": ["Maximalism", "Environmental"], "tags": ["nature", "lush", "landscape", "tranquility"], "description": "A study in natural depth and layered greenery. By utilizing a natural frame of overhanging leaves, the composition invites the viewer into a sun-soaked clearing, capturing the quiet rhythm of a managed landscape. The work balances the chaotic complexity of foliage with the serene simplicity of light.", "thumb": "IMG20260226152150.jpg", "full": "IMG20260226152150.jpg" },
+        { "id": "p10", "title": "The Ascendant", "year": "2026", "medium": "Digital Action Photography", "dimensions": "3072 x 1266", "category": ["Slice of Life", "Environmental"], "location": "Nakki Lake, Mount Abu", "tags": ["nature", "action", "landscape", "mount abu", "serendipity"], "description": "A split-second capture of a bird in flight over Nakki Lake. The composition utilizes the white spray of a fountain to silhouette the subject, creating a point of sharp focus amidst the sprawling activity of the water and the misty outlines of the surrounding Aravalli Range.", "thumb": "IMG_20260329_112022.jpg", "full": "IMG_20260329_112022.jpg" },
+        { "id": "p11", "title": "Arid Skin", "year": "2025", "medium": "Texture Study Macro Photography", "dimensions": "3120 x 4160", "category": ["Minimalism", "Macro", "Environmental"], "tags": ["texture", "organic", "macro", "earth-tones"], "description": "A macro exploration of biological geometry. By isolating the desiccated bark of a tree, the image highlights the rugged resilience of nature's armor. The high-contrast sunlight emphasizes deep fissures and grain, transforming a living surface into an abstract topographical map.", "thumb": "IMG-20260222-WA0102.jpg", "full": "IMG-20260222-WA0102.jpg" },
+        { "id": "p12", "title": "Vortex of Silence", "year": "2024", "medium": "ICM Photography", "dimensions": "1080 x 1920", "category": ["Street", "Monochrome"], "tags": ["abstract", "motion", "monochrome", "kinetic"], "description": "An exploration of temporal distortion using Intentional Camera Movement (ICM). By translating light into chaotic, vertical strokes, the work captures the energy of a single moment collapsing into abstraction. A study on the intersection of light and velocity.", "thumb": "96541031.jpg", "full": "96541031.jpg" },
+        { "id": "p13", "title": "Carbonated Ruins", "year": "2023", "medium": "Street Photography", "dimensions": "1080 x 1920", "category": ["Maximalism", "Street"], "tags": ["urban decay", "street art", "typography", "nostalgia"], "description": "A study of commercial artifacts in transition. This piece captures a weathered Pepsi mural, where the cracking paint and encroaching moss symbolize the slow reclamation of the urban environment. It explores the tension between global branding and the organic decay of the local landscape.", "thumb": "633127267.jpg", "full": "633127267.jpg" },
+        { "id": "p14", "title": "The Morning Chronicle", "year": "2022", "medium": "Monochrome Portrait Photography", "dimensions": "940 x 1552", "category": ["Slice of Life", "Monochrome"], "tags": ["portrait", "candid", "monochrome", "human-element"], "description": "A study in quiet daily ritual. This monochrome portrait captures the effortless dignity of a man lost in his reading, highlighting the intersection of human intellectual life and the unpolished reality of his surroundings. The absence of shoes and the presence of the discarded clogs add a layer of vulnerability and grounding to the frame.", "thumb": "IMG_20260329_002435.jpg", "full": "IMG_20260329_002435.jpg" },],
+      // { "id": "p2", "title": "Woman in Ochre", "year": "2022", "medium": "Acrylic on linen", "dimensions": "36 x 28 inches", "category": "Figurative", "tags": ["portrait", "feminine", "warmth"], "description": "A semi-abstract portrait exploring femininity through the warmth of ochre and burnt sienna. The subject gazes away, suggesting an inner world inaccessible to the viewer. A meditation on presence and distance.", "thumb": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=600&q=80", "full": "https://images.unsplash.com/photo-1578301978693-85fa9c0320b9?w=1200&q=90" },
+      // { "id": "p3", "title": "The Cartographer Dream", "year": "2023", "medium": "Watercolour and ink", "dimensions": "24 x 18 inches", "category": "Mixed Media", "tags": ["maps", "mythology", "india"], "description": "An imagined map of consciousness layered over the subcontinent's geography. Veins of blue ink trace rivers both real and mythological. The painting references the colonial act of cartography as a form of violence and reimagines it as a tender reckoning.", "thumb": "https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?w=600&q=80", "full": "https://images.unsplash.com/photo-1607457561901-e6ec3a6d16cf?w=1200&q=90" },
+      // { "id": "p4", "title": "After the Rains", "year": "2021", "medium": "Oil on canvas", "dimensions": "60 x 40 inches", "category": "Oil Painting", "tags": ["landscape", "monsoon", "lucknow"], "description": "The glistening aftermath of a monsoon evening. Wet cobblestone streets reflect a diffused amber light. Painted over three monsoon weeks, the canvas carries the humidity of the season itself.", "thumb": "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&q=80", "full": "https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=1200&q=90" },
+      // { "id": "p5", "title": "Ruins of Belonging", "year": "2022", "medium": "Acrylic and charcoal", "dimensions": "40 x 30 inches", "category": "Mixed Media", "tags": ["architecture", "memory", "loss"], "description": "Crumbling Nawabi architecture rendered in desaturated greens and greys, with passages of charcoal that suggest dissolution. The work meditates on cultural amnesia and the architectural erasure of Awadhi heritage.", "thumb": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=600&q=80", "full": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1200&q=90" },
+      // { "id": "p6", "title": "The Quiet Hours", "year": "2024", "medium": "Gouache on board", "dimensions": "16 x 12 inches", "category": "Gouache", "tags": ["interior", "solitude", "light"], "description": "A small, intimate study of morning light entering an empty room. The diffused quality of early light through muslin curtains creates a haze that softens every edge. A painting about the hour before the world makes its demands.", "thumb": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=600&q=80", "full": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=1200&q=90" }
+      "artworks": [
+        { "id": "a1", "title": "Residual Identity", "year": "2026", "medium": "Digital Art", "dimensions": "Variable", "category": "Abstract", "tags": ["abstract", "psychedelic", "pareidolia", "identity", "surreal"], "description": "A fleeting presence emerges within fluid gradients of magenta and yellow, something trying to become someone. The form suggests a face, but dissolves upon focus, as if he was there until you looked. Soft transitions and drifting contours evoke the instability of perception, where identity exists only momentarily, suspended between recognition and absence.", "thumb": "28-03.png?w=600&q=80", "full": "ResiduesOfIdentity.png?w=1200&q=90" },],
+      // { "id": "a2", "title": "Study of Hands Series I", "year": "2023", "medium": "Graphite on cartridge paper", "dimensions": "14 x 11 inches", "category": "Graphite Study", "tags": ["anatomy", "hands", "study"], "description": "A series of graphite studies exploring the expressive potential of the human hand. Each drawing renders the subject at different states of tension and repose. Twelve sheets, shown here as the first in sequence.", "thumb": "https://images.unsplash.com/photo-1531685250784-7569952593d2?w=600&q=80", "full": "https://images.unsplash.com/photo-1531685250784-7569952593d2?w=1200&q=90" },
+      // { "id": "a3", "title": "City Margins", "year": "2022", "medium": "Pen and ink on paper", "dimensions": "18 x 24 inches", "category": "Ink Drawing", "tags": ["urban", "lucknow", "architecture"], "description": "A dense pen-and-ink rendering of Lucknow's old city lanes, rickshaws, chai stalls, the fraying electric wires overhead. Drawn over several weeks from observation, not memory, it documents a city in quiet transition.", "thumb": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80", "full": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=90" },
+      // { "id": "a4", "title": "Portrait of a Stranger", "year": "2024", "medium": "Charcoal on paper", "dimensions": "22 x 17 inches", "category": "Charcoal", "tags": ["portrait", "charcoal", "face"], "description": "A large charcoal portrait of an unknown figure encountered briefly. The face emerges from deep shadow, its features half-resolved as if being remembered rather than observed. The smudging is intentional, a representation of the unreliable witness.", "thumb": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=600&q=80", "full": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=1200&q=90" },
+      // { "id": "a5", "title": "Tree in Winter", "year": "2021", "medium": "Ink wash on paper", "dimensions": "12 x 16 inches", "category": "Ink Wash", "tags": ["nature", "minimalism", "winter"], "description": "Inspired by Zen ink painting, this sparse work reduces a bare tree to its essential gesture. The ink wash pools and bleeds at the margins, suggesting the tree's presence even in absence.", "thumb": "https://images.unsplash.com/photo-1502759683299-cdcd6974244f?w=600&q=80", "full": "https://images.unsplash.com/photo-1502759683299-cdcd6974244f?w=1200&q=90" }
+      "poems": [
+        { "id": "po1", "title": "Letter to the Gomti", "year": "2023", "theme": "Place & Memory", "preview": "You carry the city's secrets / the way old women carry grief /  not loudly, not with ceremony...", "fullText": "You carry the city's secrets\nthe way old women carry grief,\nnot loudly, not with ceremony,\nbut in the slow accumulation\nof a thousand small surrenders.\n\nI have watched you shrink\neach summer, your banks retreating\nlike a shy guest who has outstayed\nhis welcome in someone else's home.\n\nStill, the children come.\nThey come the way children always come \nheedless and luminous,\ntrailing their laughter behind them\nlike kites in a wind that is thinning.\n\nI do not ask you to be\nwhat the poets made you.\nI only ask you to stay\nlong enough\nfor me to remember\nwhat staying looks like.", "notes": "Written after the 2025 dry season, during a period of prolonged absence from Lucknow." },
+        { "id": "po2", "title": "The Weight of Hindi", "year": "2022", "theme": "Language & Identity", "preview": "There is a word in Hindi / that has no English shadow, / it lives in the throat...", "fullText": "There is a word in Hindi\nthat has no English shadow,\nit lives in the throat\nlike something swallowed\nand not yet digested.\n\nMy grandmother spoke it\nas naturally as breathing.\nI speak it the way one speaks\na language learned from books \nwith grammar and without music.\n\nBetween her tongue and mine\nlies the length of one generation\nand the width of a colonial education.\n\nI am trying to cross it.\nNot with the urgent gait\nof someone making up for lost time,\nbut with the tentative step\nof someone learning, again,\nto trust the ground.", "notes": "Part of a longer sequence examining language, inheritance, and the politics of expression." },
+        { "id": "po3", "title": "Elegy for a Small Room", "year": "2024", "theme": "Loss & Dwelling", "preview": "The room does not know / you have left it. It keeps / your particular silence...", "fullText": "The room does not know\nyou have left it. It keeps\nyour particular silence,\nthe kind that arrives\nafter a voice has been present\na long time.\n\nThe window still holds\nthe angle of light you loved.\nThe walls still bear\nthe faint impression\nof everything you hung on them.\n\nA room is an archive.\nIt does not edit.\nIt does not spare you\nthe fact of your own absence\nwhen you return.\n\nI sit in the corner\nwhere your chair used to be\nand try to remember\nwhat it felt like\nto be in a room\nwith you in it.\n\nThe room is patient.\nIt is not waiting.\nIt has simply\nnot yet forgotten.", "notes": "Written for a friend who moved away. The small room is also a metaphor for the self." },
+        { "id": "po4", "title": "Instructions for Reading Silence", "year": "2023", "theme": "Meditation", "preview": "Begin with the silence / that follows a question / no one knows how to answer...", "fullText": "Begin with the silence\nthat follows a question\nno one knows how to answer.\n\nNote how it is not empty,\nhow it is crowded, rather,\nwith the things\nthat cannot be said\nwithout being diminished.\n\nMove to the silence\nbetween two people\nwho love each other\nand have run out\nof safe words.\n\nFeel how it leans toward tenderness.\nHow it is only frightening\nif you have forgotten\nthat tenderness is not nothing.\n\nFinally, arrive at the silence\nafter music ends \nthat brief, held breath\nbefore the applause\nwhen the whole room\nis still inside the sound.\n\nThat is the one\nI return to.\nThat is the one\nI am always trying\nto write my way back into.", "notes": "A meditation on the varieties of silence. Influenced by John Cage and Gulzar equally." },
+        { "id": "po5", "title": "Postcolonial Cartography", "year": "2022", "theme": "History & Identity", "preview": "They drew lines through us / the way one draws lines / through a word to show / it should be deleted...", "fullText": "They drew lines through us\nthe way one draws lines\nthrough a word to show\nit should be deleted,\nstill legible,\nbut marked for removal.\n\nThe lines became rivers,\nbecame fences,\nbecame the places\nwhere your father's people\nended\nand my father's people\nbegan.\n\nWe have spent seventy years\nlearning to call these lines natural.\n\nLook at a map.\nLook at how straight they are \nthe ones they drew.\nNature does not make\nstraight lines.\nNeither does love.\n\nI am learning to read\nthe old maps,\nthe ones drawn before\nsomeone decided\nthat what we were\nneeded to be corrected.\n\nThey are messier.\nThey are truer.\nThey look like\nwhat we actually are:\noverlapping,\nentangled,\nunresolvable.", "notes": "Written after reading Saadat Hasan Manto and rereading Partition histories." },
+        { "id": "po6", "title": "in melancholy, part 1 & part 2", "year": "2023", "theme": "Desire, Contradiction & Self-Reckoning", "preview": "i, in melancholy / scream'd your name / desired your presence...", "fullText": "in melancholy, part 1\n\ni, in melancholy\nscream'd your name\ndesired your presence\nscream'd nothing but your name\nwant your presence\nstill you i hate\ni don't know why\ndesired you for being my mate\nmelancholy is reason for why\n\n\nin melancholy, part 2\n\ni, in melancholy, stayed not long.\ndevised a plan to come out young\nas a new self still the old soul\ni engaged to my mind\nmarried to my soul\nthey aren't different, but one alone\ni am desire, the passion personified\nuse me as an allegory\nfor i win worlds,\nof here,\nand those present everywhere.", "notes": "A two-part sequence exploring the paradoxes of longing and self-discovery. Part 1 traces the anguished contradiction of desire—screaming for a presence while harboring resentment, caught in the bewildering logic of melancholy where the reason and the feeling collapse into one another. Part 2 marks a turn inward: a refusal to remain trapped, a deliberate reconstruction of self where mind and soul converge. The speaker claims agency not through escape, but through integration—becoming desire itself, an allegory for transformation. The poem moves from victimhood to agency, from external longing to internal conquest, suggesting that melancholy, when metabolized, becomes a portal to worlds both intimate and infinite." },
+        { "id": "po7", "title": "i", "year": "2023", "theme": "Connection & Transcendence", "preview": "i, walking down the street / looked for humans, / the very human traces...", "fullText": "i, walking down the street\nlooked for humans,\nthe very human traces\ni found none\njust different faces.\n\nall somehow confused\nin misery, fully fatigue fused\nso i stole my eyes away\nand looked all above\nvery high\nright to the night sky\n\nand what i saw, was hope in my case\nyour face\nthe very human trace.\nthe antidote to loneliness\nand a real source of true love.", "notes": "A meditation on the search for authentic humanity in a world of surfaces. The poem moves from earthward despair to skyward transcendence, only to discover that human connection, one specific face, one particular presence is itself the sublime. The lowercase 'i' functions as both pronoun and plea, a vulnerability that opens the possibility of encounter. Written as an extension of themes exploring isolation, recognition, and the redemptive power of genuine connection." }],
+      "books": [
+        { "id": "b1", "title": "Part Weird Part Fascinating", "year": "2025", "genre": "Poetry Collection", "publisher": "Gumroad/Amazon", "pages": "27", "description": "A debut collection of forty-three poems exploring absurd, love, longing, the weird but fascinating of regions inside us. With reflections and writings exploring curiosity, emotion, and the strange beauty of everyday thought. In <em>Part Weird, Part Fascinating</em>, the pieces move between introspection and observation, between ordinary moments and the quiet intensity they carry. The writing lingers in that space where the odd, the emotional, and the thoughtful meet.", "excerpt": "These pieces arrive at meaning slowly, the way realization arrives after a long moment of silence, when something small suddenly feels both strange and deeply familiar." },
+        { "id": "b2", "title": "Under Destruction", "year": "2025", "genre": "Poetry & Illustration", "publisher": "Privately Circulated", "pages": "33", "description": "A raw, unfiltered collection of poems and short pieces exploring isolation, defiance, dark humor and longing. Designed for readers who prefer honesty over prettiness. The voice is confrontational, self aware, and often abrasive, moving between vulnerability and arrogance in the same breath. Sleepless nights, fractured relationships, obsessive love, technological disgust, wounded pride, and existential fatigue form the emotional backbone of the book. The language is blunt and sometimes profane, not for shock alone but to preserve authenticity. Each piece feels immediate, as if written in the middle of emotional combustion rather than after reflection. This is not poetry polished for elegance but expression left intentionally rough at the edges.", "excerpt": "The collection revolves around alienation and self fragmentation, presenting a speaker who feels detached from society yet intensely aware of it. Defiance appears as both armor and performance, with exaggerated confidence masking inner erosion. Longing threads through romantic obsession, missed connections, and unreciprocated devotion. Dark humor acts as a coping mechanism, turning despair into satire and self mockery into power. Together, these themes construct a voice that prefers honesty over prettiness and confrontation over comfort, appealing to readers who recognize beauty in emotional wreckage rather than refinement." },
+        { "id": "b3", "title": "The Unfinished Map", "year": "2023", "genre": "Poetry Collection", "publisher": "Privately Circulated", "pages": "84", "description": "A debut collection of thirty-one poems exploring geography, memory, and the politics of belonging. The poems move between Lucknow's old city and imagined elsewhere, between Hindi and English, between what is said and what can only be suggested.", "excerpt": "These poems arrive at meaning the way monsoons arrive at the plains: sideways, obliquely, after a long preparation of heat." },
+        { "id": "b4", "title": "Inheritance: Essays on Art and Memory", "year": "2022", "genre": "Essay Collection", "publisher": "Manuscript", "pages": "210", "description": "A collection of personal essays examining the relationship between visual art, cultural memory, and the experience of growing up in post-liberalisation India. Drawing on art history, personal anecdote, and close reading, these essays locate the self in the work.", "excerpt": "The book opens with a question: what does it mean to look at Indian art as an Indian, not as a subject of art-historical tourism, but as someone whose own life is in the frame?" },
+        { "id": "b5", "title": "Notes from the Margin", "year": "2021", "genre": "Diaries & Fragments", "publisher": "Zine / Limited Print", "pages": "56", "description": "A slim volume of observations, fragments, and notebook entries gathered over three years. Part travel diary, part philosophical jotting, part sketch. This book refuses to resolve into any single genre, which is perhaps its point.", "excerpt": "Every margin is someone's centre. Every footnote was once the main text. This book began as notes made while reading other books." }],
+      "essays": [
+        { "id": "e1", "title": "On Looking at Painting in a Distracted Age", "type": "Essay", "date": "March 2025", "readTime": "3 min", "excerpt": "The problem with contemporary art consumption is not that we see too little. We see too quickly. The museum has become another scroll.", "body": "<p>In the february of 2026, I spent my entire day at two art galleries <em>Lalbhai Dalpatbhai Museum</em> and <em>ICAC Jodhpur Art Gallery</em> in Ahmedabad. The average time a visitor spends in front of a painting is somewhere between fifteen and thirty seconds. We are, as viewers, profoundly efficient.</p><h2>The Economy of Attention</h2><p>There is a kind of violence in this efficiency. Not a dramatic violence, but the quiet, structural violence of a system that has decided that looking, is a luxury most schedules cannot afford. The museum has become a content delivery mechanism with better lighting than the internet.</p><p>I do not say this to be curmudgeonly. I say it because I am implicated in it. I have stood in front of paintings and thought about what I was going to eat for dinner. I have photographed a Monet before I have seen a Monet.</p><h2>What Slow Looking Teaches</h2><p>When I stood in front of some paintings for a few minutes, something began to happen around the two-minute mark. The painting stopped being a painting I was looking at and became a space I was inhabiting. About sculptures, three figures I saw of Buddha, Mahavir and Mahavtara, their heavy-limbed melancholy, the flatness of their affect, the weight of their gaze, began to speak in ways that fifteen seconds could never have allowed.</p><p>Slow looking is a form of self-knowledge. It requires a willingness to stay with discomfort, to resist the impulse to resolve ambiguity, to allow a work to mean more than one thing at once.</p>" },
+        { "id": "e2", "title": "Why I Write in English About Things I Feel in Hindi", "type": "Personal Essay", "date": "November 2024", "readTime": "2 min", "excerpt": "Language is not a neutral container. When I write in English, I am not simply translating thought into word. I am translating self into something the self does not entirely trust.", "body": "<p>There is a conversation I have been having with myself for approximately fifteen years. It goes something like this: you grew up speaking Hindi, dreaming in Hindi, quarrelling and loving in Hindi. Why, then, do you write in English?</p><h2>The Longer Answer</h2><p>The longer answer has to do with distance. English gives me a distance from my own experience that Hindi does not. When I write about my grandmother in English, I can observe her. When I try to write about her in Hindi, I am simply inside the memory, unable to see its edges.</p><p>Hindi, for me, is the language of the body. It is how I feel. English is the language of the mind. It is how I think about feeling. To write at all is to translate between these registers, and the translation is always lossy.</p><h2>What Is Lost and What Is Found</h2><p>I have begun, in recent years, to write poems in Hindi. They are private documents, largely. They do not have the craft of my English writing; they have something else instead, an immediacy, a rawness, a willingness to be plain that my English work sometimes lacks.</p>" },
+        { "id": "e3", "title": "The Art of the Unfinished", "type": "Art Criticism", "date": "January 2024", "readTime": "3 min", "excerpt": "Da Vinci knew this: incompletion is not failure, but a refusal to lie. In the history of art, the unfinished work often carries more truth than the resolved one.", "body": "<p>Michelangelo's Prisoners, the series of figures emerging half-formed from blocks of marble in the Galleria dell'Accademia in Florence, are among the most powerful sculptures in Western art. They are unfinished. They are, by the conventional standard of their era, failed. And yet we return to them. We return because they show something that the finished work cannot show: the act of becoming.</p><p>Leonardo da Vinci understood this intimately. His notebooks overflow with unfinished sketches, half-explored ideas, studies abandoned in favor of deeper questioning. He refused to resolve what he had not yet fully understood. The Last Supper crumbles on its refectory wall, its very deterioration an argument for impermanence over polish. Da Vinci's legacy is not in completion, but in the courage of incompletion, the willingness to chase perfection before completed contracts and commissions. This genius has mentioned in his final moments that he is a failure. Was he?</p><p>I have a book that I have been working on, intermittently, for over a year. Every time I return to it, I find that I am not ready to finish it. The work, in its unresolved state, holds open a question that matters to me. To resolve it would be to pretend I have an answer I do not have. This is, I suspect, not inefficiency. It is a form of intellectual honesty made visible in paint, in words, in the deliberate refusal to close what must remain open. The unfinished work is the only honest mirror we have.</p>" },
+        { "id": "e4", "title": "Lucknow as a Way of Seeing", "type": "Cultural Essay", "date": "July 2023", "readTime": "2 min", "excerpt": "Lucknow is beautiful not because of its dead nawabs, but in spite of them. The true genius of this city lies in the ordinary hands that built it, the streets that remember what palaces forget, the people who continue to make beauty from nothing.", "body": "<p>There is a myth about Lucknow that needs to be addressed. The narrative of Nawabi grandeur, of decaying palaces and faded courtly refinement, has calcified into a kind of museum piece that is pretty, nostalgic and fundamentally dishonest. This is not the real Lucknow. The real one is far more subversive, far more alive.</p><p>Walk through the mohallas of Lucknow and you will find the actual beauty: in the geometry of a fruit seller's arrangement of oranges on a wooden cart, in the way light breaks through the intricate lattice of a shopkeeper's awning, in the patient hands of a woman rolling dough in a kitchen no larger than a closet. This is where the true aesthetics live. Not in the broken arches of some abandoned haveli, but in the unbroken continuity of ordinary acts done with extraordinary care.</p><p>The cramped, chaotic, democratic streets of Lucknow are far more beautiful than any Nawabi monument. A narrow lane in Charbagh, where three generations of one family have sold the same spice blend, where children play cricket with a stick and a ball made of rags, where the sound of a bicycle bell mingles with the call to prayer: this is Lucknow. The beauty is in the texture of worn brick, in the way a makeshift shelter is built with such ingenuity it becomes architecture, in the infinite variations of human kindness enacted in a single day.</p><p>The people of Lucknow carry the real tradition. Not the rigid etiquette of courts, but something more vital: the ability to make space for one another in an impossibly crowded city. The courtesy that emerges not from hierarchy but from necessity and genuine affection. The wit that survives not in ghazal performances for the elite, but in the everyday language of the streets, where a shopkeeper's joke can contain more wisdom than a poet's couplet.</p><p>I believed that Lucknow's beauty was buried in its past. I was wrong. Its beauty is in what it continues to become. Every chipped step, every hand-painted sign, every improvised solution to an impossible problem, this is the real tehzeeb of Lucknow. Not the aesthetics of the court, but the aesthetics of survival and resilience and stubborn, everyday grace.</p>" }],
+      "letters": [
+        { "id": "l1", "title": "A Letter to a Young Artist", "type": "Open Letter", "date": "February 2024", "recipient": "To Whoever Needs This", "excerpt": "You asked me what advice I would give to someone starting out. I resisted answering for several months because I was suspicious of the question.", "body": "<p>You asked me what advice I would give to someone starting out. I resisted answering for several months because I was suspicious of the question. Not of you, of the form. Advice to young artists tends to be either so general as to be useless or so specific as to be merely autobiographical.</p><p>The first thing I would say: do not be in a hurry to arrive. The pressure on young artists now, the urgency to find an audience, to post the work, to build a following, is enormous and mostly counterproductive. An artist who is in a hurry to be seen is an artist who does not yet trust the work.</p><p>The second thing: make things that are too small for anyone else to care about. My best paintings have been of things no one suggested I paint, a specific quality of evening light on a specific wall, a face that no one else knows. The smallness of the subject is not a limitation. It is a precision.</p><p>The third thing, which is perhaps the most important: learn to be alone with the work. This silence is not empty. It is where the real work happens.</p><p>With warmth,<br/>Shreyash</p>" },
+        { "id": "l2", "title": "On the Difficulty of Beginning", "type": "Blog", "date": "October 2023", "recipient": "Personal Journal", "excerpt": "Inspiration, not a lightning but a whisper and sometimes, the courage to listen which is harder than the work that follows.", "body": "<p>There is a particular species of silence that exists before creation begins. I have learned to recognize it, to sit with it, to understand that it is not emptiness but gestation. The blank page is not vacant; it is pregnant with infinite possibility, and the artist's task is not to fill it, but to midwife what already exists in the invisible realm between thought and form.</p><p>Inspiration, I have discovered, does not announce itself with fanfare. It arrives in fragments, a quality of light at dusk, the cadence of a overheard conversation, the ache of something unnamed in the chest. These glimmers appear unbidden, and the artist's work is to gather them like a child collecting shells, to hold them carefully without crushing them, to notice which ones sing when held to the ear.</p><p>The difficulty of beginning lies not in the absence of ideas, but in the courage required to honor them. To translate the ineffable into the material. To risk beauty and fail. To write the first sentence, knowing it might be wrong, and trusting that wrongness itself can be a kind of rightness if pursued with sincerity.</p><p>I have learned that inspiration and execution are not the same language. One whispers in dreams and metaphor; the other requires breath, discipline, the slow accumulation of small gestures. To begin is to accept this translation. To accept that what arrives as a feeling must be born as a choice.</p><p>Tomorrow, I will step into the studio again. I will lay down the first mark imperfect, uncertain, entirely mine. And in that moment of commitment, inspiration will finally have somewhere to land.</p>" },
+        { "id": "l3", "title": "Notes on a Trip to Varanasi", "type": "Travel Writing", "date": "September 2023", "recipient": "For the Record", "excerpt": "Varanasi does not welcome you. It simply allows you to be present for a process that was happening long before you arrived.", "body": "<p>I arrived in Varanasi at five in the morning, stepping off an overnight train into the blue-black of pre-dawn. The city smelled of wood smoke and marigolds and the river, which smells of everything the river has received.</p><p>I spent three days walking. The ghats in the morning, the lanes in the afternoon, the rooftops at night. I drew in a sketchbook. I talked to a retired Sanskrit teacher who was feeding stray dogs outside his house. I watched a body burn.</p><p>What Varanasi teaches, what it insists on, if you stay long enough, is that time is not linear. The city has been continuously inhabited for three thousand years. Every layer is still present. The ancient and the contemporary do not succeed each other here; they coexist, uncomfortably, productively, in the same narrow lanes.</p><p>I came back to Lucknow with a notebook full of drawings I have not yet used. Varanasi gives you more than you can carry.</p>" },
+        { "id": "l4", "title": "In Defence of Slowness", "type": "Blog", "date": "June 2024", "recipient": "Public Writing", "excerpt": "We have built an entire economy around the idea that faster is better. Art is the last resistance to this claim.", "body": "<p>I made a painting this spring that took four months. In an age of daily content drops, of algorithmically optimised productivity, four months for one thing feels almost perverse.</p><p>What four months contains: a full winter and most of a spring. Several hundred sessions, some lasting minutes, some hours. A dozen dead ends, two complete compositional rethinks, and one period of two weeks during which I was so convinced the painting was a failure that I nearly painted over it.</p><p>What it also contains, and this is the part I want to defend, is a quality of attention that shorter time spans cannot accumulate. The painting knows me now. I know its resistances. I know what the painting wants to be, which is different from what I initially thought I wanted it to be.</p><p>This is what slowness protects: the possibility of depth. And depth, in a culture that has largely stopped valuing it, feels like the most necessary thing I know how to make.</p>" },
+        { "id": "l5", "title": "Notes on a Trip to Mount Abu", "type": "Travel Writing", "date": "February 2026", "recipient": "For the Record", "excerpt": "Mount Abu is Rajasthan's only hill station, which is perhaps why it carries an air of mild surprise at its own existence.", "body": "<p>I went to Mount Abu in March, which is already too warm in the plains. The drive up from Abu Road is the best part: the road narrows, the temperature drops by degrees, and the desert suddenly becomes something else. Scrub gives way to forest. The light changes quality.</p><p>The town itself is small and slightly bewildered by its own popularity. Tourists come for the lake, for the Dilwara temples, for the novelty of a hill in a flat state. I came because a friend insisted and because I had never been.</p><p>The Dilwara temples are the reason to go. I spent three hours inside them and could have spent three more. The marble carving is of a kind that makes you question what hands are actually capable of. Ceilings that look like lace. Pillars carved into forms that seem to have no structural logic, only decorative ambition. The craftsmen who built them are anonymous. Their work has outlasted any name they might have left.</p><p>I bought a small sketchbook in the market and filled half of it before I left. The rest I finished on the bus back. Mount Abu is the kind of place that makes you want to record things before you forget them, which is, I think, the definition of a place worth visiting.</p>" },
+        { "id": "l6", "title": "Living in Ahmedabad for a Job", "type": "Blog", "date": "September 2025", "recipient": "Personal Journal", "excerpt": "Ahmedabad is a city that takes some time to understand. It does not offer itself immediately. You have to earn it.", "body": "<p>I moved to Ahmedabad for a three-month contract in July. I had been told it was a business city, not an art city. Both things turned out to be true and neither turned out to matter as much as I expected.</p><p>My flat was in Thaltej, a neighbourhood that is neither new nor exciting enough to be interesting, which suited me. I wanted to be somewhere I did not feel the pressure to explore. I wanted to work and to exist quietly.</p><p>Sabarmati Ashram changed this plan. I went once on a Sunday in my second week, being real that place wasn't interesting at all. I also tried old city, intending to spend an hour. I spent five. The pol houses, the carved wooden facades, the havelis in various states of repair and disrepair: all of it is a kind of argument that beauty is not incidental to daily life, that the people who built these houses believed the place where you lived was worth the effort of making beautiful. I wrote constantly. Man I loved Navratri.</p> <p> My output in those three months was higher than in any comparable period in Lucknow. Something about being a stranger in a city frees you. You have no obligations to it. You can look at it without the exhaustion of familiarity.</p><p>I left in October and came back in January for my last installment of work here till February, to leave with good memories, people, one complete collection of poetry, a copy of Atul Dodiya's Saptpadi, some more stupid shit I brought and a mild regret at leaving before the Summer, which I had been told is not formidable. Maybe that was wise. Or maybe I just was not ready to commit to it. Some cities you visit. Some cities ask you to stay. Ahmedabad asked, and I said not yet.</p><p>List of places I also visited: Adalaj Stepwell, Lalbhai Dalpatbhai Museum, Kasturbhai Lalbhai Museum, Indigo Art Gallery, Amdavad Ni Gufa & Gallery, ICAC Art Gallery, Riverfront, Teen Darwaja, Science City, University Area, HL, Kankaria, Akshardham, way too many movie theaters and a bunch of cafes. </p>" }]
+    };
+    const BOOK_PALETTES = [{ "bg": "#2c1810", "text": "#f5e6d3", "accent": "#c9a84c" }, { "bg": "#1a2c1a", "text": "#e8f0e8", "accent": "#8fbc8f" }, { "bg": "#1a1a2c", "text": "#e8e8f5", "accent": "#9090c9" }, { "bg": "#2c2010", "text": "#f5f0e0", "accent": "#d4a030" }];
+
+    // ============================================
+    // PAGES, SHREYASH SRIVASTVA GALLERY
+    // ============================================
+
+    function renderNav(activePage) {
+      return ''; // Nav is static HTML
+    }
+
+    // ——— HOME PAGE ———
+    function renderHome() {
+      const heroTiles = [
+        { img: DATA.photographs[0].thumb, label: 'Photography' },
+        { img: DATA.artworks[0].thumb, label: 'Artworks' },
+        { img: '2026-03-291715510.png', label: 'Poetry' },
+        { img: '29-03-202617_04_25.png', label: 'Writing' }
+      ];
+
+      const marqueeText = 'Photography &nbsp;·&nbsp; Artworks &nbsp;·&nbsp; Poetry &nbsp;·&nbsp; Books &nbsp;·&nbsp; Essays &nbsp;·&nbsp; Letters &nbsp;·&nbsp; Blogs &nbsp;·&nbsp; Art &nbsp;·&nbsp; Lucknow &nbsp;·&nbsp; ';
+
+      const featuredPhotography = DATA.photographs.slice(0, 5);
+
+      return `
+  <div class="page">
+
+    <!-- HERO -->
+    <section class="hero" style="margin-top: var(--nav-h);">
+      <div class="hero-left">
+        <div class="hero-grain"></div>
+        <div class="hero-eyebrow">Est. Lucknow, India · Since 2018</div>
+        <h1 class="hero-name">Shreyash<br/><em>Srivastva</em></h1>
+        <p class="hero-desc">A multidisciplinary artist and writer whose practice spans painting, drawing, poetry and personal essays. His work circles emotions, observations, politics and belonging.</p>
+        <div class="hero-scroll-hint">Scroll</div>
+      </div>
+      <div class="hero-right">
+        ${heroTiles.map(t => `
+          <div class="hero-tile">
+            <img class="hero-tile-img" src="${t.img}" alt="${t.label}" />
+            <span class="hero-tile-label">${t.label}</span>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee-bar">
+      <div class="marquee-inner">
+        ${(marqueeText.repeat(4))}
+      </div>
+    </div>
+
+    <!-- FEATURED WORKS -->
+    <section class="featured-section">
+      <div class="section-label">Selected Works</div>
+      <div class="featured-grid">
+        ${featuredPhotography.map((p, i) => `
+          <div class="featured-card ${i === 0 ? 'large' : ''}" data-nav="detail" data-type="photography" data-id="${p.id}" style="cursor:none">
+            <img class="featured-card-img" src="${p.thumb}" alt="${p.title}" />
+            <div class="featured-card-info">
+              <div class="featured-card-cat">${p.category} · ${p.year}</div>
+              <div class="featured-card-title">${p.title}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </section>
+
+    <!-- ABOUT STRIP -->
+    <section class="about-strip">
+      <div class="about-strip-left">
+        <div class="section-label">The Artist</div>
+        <h2 class="about-big">Art as a<br/><em>form of</em><br/>inquiry.</h2>
+        <a href="#" class="btn" data-page="about">Learn More →</a>
+        <div class="about-year">[2018–Forever]  </div>
+      </div>
+      <div class="about-strip-right">
+        <div class="section-label" style="color:var(--gold)">Statement</div>
+        <p class="about-text">Shreyash Srivastva's practice is rooted in the belief that art, is a mode of sustained attention. Whether working in oil colours, graphite, photos,   or words, he is interested in the same questions: what does it mean to look carefully? What do we preserve by making things? What do we lose when we do not?</p>
+        <p class="about-text" style="margin-top:1.5rem">His work draws on layered human emotions while refusing to succumb to oneself, seeking instead the complicated vitality of unruliness that contains its own contradictions.</p>
+        <a href="#" class="btn light" data-page="photography">View All Works →</a>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <div class="quote-section">
+      <span class="quote-mark">"</span>
+      <blockquote class="quote-text">The act of making is always, at some level, an act of memory, not of what was, but of what might have been and still, through making, might yet be.</blockquote>
+      <p class="quote-attr"> Shreyash Srivastva, from "Inheritance"</p>
+    </div>
+
+    <!-- CATEGORIES -->
+    <section class="categories-section">
+      <div class="section-label">Explore</div>
+      <div class="cat-grid">
+        ${[
+          { page: 'photography', num: '01', name: 'Photography', desc: 'Photographs spanning landscape, portraiture, and abstraction.' },
+          { page: 'artworks', num: '02', name: 'Artworks', desc: 'Graphite, ink, and charcoal studies, the daily practice and the foundation of all other work.' },
+          { page: 'poetry', num: '03', name: 'Poetry', desc: 'Poems that move between Hindi and English, between the personal and the political.' },
+          { page: 'books', num: '04', name: 'Books', desc: 'Collections, manuscripts, and zines, the longer forms that sustain the practice.' },
+          { page: 'essays', num: '05', name: 'Essays', desc: 'Critical and personal essays on art, language, culture, and the experience of looking.' },
+          { page: 'letters', num: '06', name: 'Letters & Blogs', desc: 'Open letters, travel writing, and journal entries that resist formal categorisation.' },
+          { page: 'about', num: '07', name: 'About', desc: 'Biography, statement, and the context that shapes the work.' },
+          { page: 'contact', num: '08', name: 'Contact', desc: 'For commissions, collaborations, and correspondence of all kinds.' }
+        ].map(c => `
+          <a href="#" class="cat-card" data-page="${c.page}">
+            <div class="cat-num">${c.num}</div>
+            <div class="cat-name">${c.name}</div>
+            <div class="cat-desc">${c.desc}</div>
+            <span class="cat-arrow">→</span>
+          </a>
+        `).join('')}
+      </div>
+    </section>
+
+    <!-- RECENT WRITING -->
+    <section class="writing-section">
+      <div class="section-label">Recent Writing</div>
+      <div class="writing-list">
+        ${DATA.essays.slice(0, 3).map(e => `
+          <a href="#" class="writing-item" data-nav="detail" data-type="essay" data-id="${e.id}">
+            <div>
+              <div class="writing-cat">${e.type}</div>
+              <div class="writing-title">${e.title}</div>
+              <div class="writing-excerpt">${e.excerpt}</div>
+            </div>
+            <div class="writing-date">${e.date} &nbsp;·&nbsp; ${e.readTime}</div>
+          </a>
+        `).join('')}
+      </div>
+    </section>
+
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  PHOTOS PAGE 
+    function renderPhotography() {
+      return `
+  <div class="page">
+    <div class="gallery-hero" data-title="PHOTOGRAPHY">
+      <div class="gallery-hero-eyebrow">Visual Works</div>
+      <h1 class="gallery-hero-title">Phot<em>ography</em></h1>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Abstract">Abstract</button>
+      <button class="filter-btn" data-filter="Minimalism">Minimalism</button>      
+      <button class="filter-btn" data-filter="Maximalism">Maximalism</button>
+      <button class="filter-btn" data-filter="Monochrome">Monochrome</button>
+      <button class="filter-btn" data-filter="Heritage">Heritage</button>
+      <button class="filter-btn" data-filter="Street">Street</button>
+      <button class="filter-btn" data-filter="Slice of Life">Slice of Life</button>
+      <button class="filter-btn" data-filter="Self-Portrait">Self-Portrait</button>
+      <button class="filter-btn" data-filter="Mixed Media">Mixed Media</button>
+
+    </div>
+    <div class="masonry-section">
+      <div class="masonry-grid" id="photographyGrid">
+        ${DATA.photographs.map(p => `
+          <div class="masonry-item ${Array.isArray(p.category) ? p.category.map(c => c.replace(/\s+/g, '-')).join(' ') : ''}" data-nav="detail" data-type="photography" data-id="${p.id}" data-category="${Array.isArray(p.category) ? p.category.join(',') : p.category}">            <img src="${p.thumb}" alt="${p.title}" loading="lazy" />
+            <div class="masonry-overlay">
+              <div class="masonry-overlay-cat">${p.category} · ${p.year}</div>
+              <div class="masonry-overlay-title">${p.title}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  ARTWORKS PAGE 
+    function renderArtworks() {
+      return `
+  <div class="page">
+    <div class="gallery-hero" data-title="ARTWORKS">
+      <div class="gallery-hero-eyebrow">Works on Paper</div>
+      <h1 class="gallery-hero-title"><em>Art</em>works</h1>
+    </div>
+    <div class="filter-bar">
+      <span class="filter-label">Filter:</span>
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="Graphite Study">Graphite</button>
+      <button class="filter-btn" data-filter="Ink Drawing">Ink</button>
+      <button class="filter-btn" data-filter="Charcoal">Charcoal</button>
+      <button class="filter-btn" data-filter="Ink Wash">Ink Wash</button>
+    </div>
+    <div class="masonry-section">
+      <div class="masonry-grid" id="artworksGrid">
+        ${DATA.artworks.map(a => `
+          <div class="masonry-item" data-nav="detail" data-type="artwork" data-id="${a.id}" data-category="${a.category}">
+            <img src="${a.thumb}" alt="${a.title}" loading="lazy" />
+            <div class="masonry-overlay">
+              <div class="masonry-overlay-cat">${a.category} · ${a.year}</div>
+              <div class="masonry-overlay-title">${a.title}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  POETRY PAGE 
+    function renderPoetry() {
+      return `
+  <div class="page">
+    <div class="gallery-hero" data-title="POETRY">
+      <div class="gallery-hero-eyebrow">Poems & Verses</div>
+      <h1 class="gallery-hero-title">Po<em>etry</em></h1>
+    </div>
+    <div class="poetry-list">
+      ${DATA.poems.map((po, i) => `
+        <a href="#" class="poem-card" data-nav="detail" data-type="poem" data-id="${po.id}">
+          <div class="poem-card-left">
+            <div class="poem-num">0${i + 1}</div>
+            <div class="poem-date">${po.year}</div>
+          </div>
+          <div>
+            <h2 class="poem-title">${po.title}</h2>
+            <p class="poem-preview">${po.preview}</p>
+            <span class="poem-theme">${po.theme}</span>
+          </div>
+        </a>
+      `).join('')}
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  BOOKS PAGE 
+    function renderBooks() {
+      return `
+  <div class="page">
+    <div class="gallery-hero" data-title="BOOKS">
+      <div class="gallery-hero-eyebrow">Published Works</div>
+      <h1 class="gallery-hero-title"><em>Books</em></h1>
+    </div>
+    <div class="books-grid">
+      ${DATA.books.map((b, i) => {
+        const palette = BOOK_PALETTES[i % BOOK_PALETTES.length];
+        return `
+        <a href="#" class="book-card" data-nav="detail" data-type="book" data-id="${b.id}">
+          <div class="book-cover">
+            <div class="book-cover-placeholder" style="background:${palette.bg}">
+              <div class="book-cover-placeholder-text" style="color:${palette.text}; border: 1px solid ${palette.accent}; padding: 2rem; width:100%; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:1rem; text-align:center;">
+                <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:${palette.accent}">${b.genre}</div>
+                <div style="font-family:var(--font-display);font-size:1.5rem;font-weight:900;font-style:italic;line-height:1.15;">${b.title}</div>
+                <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.1em;margin-top:auto;color:${palette.accent}">Shreyash Srivastva · ${b.year}</div>
+              </div>
+            </div>
+          </div>
+          <div class="book-genre">${b.genre}</div>
+          <div class="book-title">${b.title}</div>
+          <div class="book-year">${b.year} · ${b.pages} pages</div>
+        </a>`;
+      }).join('')}
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  ESSAYS PAGE 
+    function renderEssays() {
+      return `
+  <div class="page">
+    <div class="gallery-hero" data-title="ESSAYS">
+      <div class="gallery-hero-eyebrow">Critical & Personal Writing</div>
+      <h1 class="gallery-hero-title">Essays &<br/><em>Articles</em></h1>
+    </div>
+    <div class="essay-list">
+      ${DATA.essays.map(e => `
+        <a href="#" class="essay-card" data-nav="detail" data-type="essay" data-id="${e.id}">
+          <div>
+            <div class="essay-type">${e.type}</div>
+            <h2 class="essay-title">${e.title}</h2>
+            <p class="essay-excerpt">${e.excerpt}</p>
+          </div>
+          <div class="essay-meta">
+            <span>${e.date}</span>
+            <span class="essay-readtime">${e.readTime} read</span>
+          </div>
+        </a>
+      `).join('')}
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  LETTERS & BLOGS PAGE 
+    function renderLetters() {
+      return `
+  <div class="page">
+    <div class="gallery-hero" data-title="LETTERS">
+      <div class="gallery-hero-eyebrow">Letters, Blogs & Journals</div>
+      <h1 class="gallery-hero-title">Let<em>ters</em> &<br/>Blogs</h1>
+    </div>
+    <div class="letters-grid" style="padding-top:3rem">
+      ${DATA.letters.map(l => `
+        <a href="#" class="letter-card" data-nav="detail" data-type="letter" data-id="${l.id}">
+          <div class="letter-type">${l.type}</div>
+          <h2 class="letter-title">${l.title}</h2>
+          <p class="letter-excerpt">${l.excerpt}</p>
+          <div class="letter-meta">
+            <span>${l.recipient}</span>
+            <span>${l.date}</span>
+          </div>
+        </a>
+      `).join('')}
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  ABOUT PAGE 
+    function renderAbout() {
+      return `
+  <div class="page about-page">
+    <div class="about-page-hero">
+      <h1 class="about-page-hero-title">Shreyash<br/><em>Srivastva</em></h1>
+    </div>
+    <div class="about-content">
+      <div class="about-text-col">
+        <div class="section-label">Biography</div>
+        <div class="about-body">
+          <p>Shreyash Srivastva (b. 2003, Lucknow) is a multidisciplinary artist and writer whose practice spans poetry, painting, drawing, and personal essays. He lives and works in Lucknow, India.</p>
+          <p>His visual work is rooted in close observation of emotions, the absurd, and the human figure, and is executed primarily in oil, graphite, and ink. Recurring concerns include the noir aesthetic, cultural heritage, the politics of language in postcolonial India, and the phenomenology of light and dark.</p>
+          <p>As a writer, he works across multiple genres: dirty realism to lyric poetry, free verse, simple phrasing and a cynical yet honest tone. His work includes critical essays on emotion and ideas; practicing visual art and culture; personal essays that resist genre; and an ongoing body of letters and journal writing. His writing has appeared in private circulations and literary journals, and he maintains a practice of making work for readers rather than audiences.</p>
+          <p>He believes the visual and verbal practices are, at their deepest level, the same inquiry. Both begin from careful looking. Both are interested in what cannot be said directly. Both are forms of sustained attention in a world that rewards the opposite.</p>
+          <p>His work has been shown privately and in group exhibitions in Lucknow. He is currently working on a third poetry collection and a series of large-format oil paintings.</p>
+        </div>
+        <a href="#" class="btn" data-page="contact">Get in Touch →</a>
+      </div>
+      <div class="about-sidebar">
+        <div class="section-label">At a Glance</div>
+        <div class="about-stat-list">
+          <div class="about-stat">
+            <div class="about-stat-num">6+</div>
+            <div class="about-stat-label">Years of Work</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">10+</div>
+            <div class="about-stat-label">Paintings & Drawings</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">3</div>
+            <div class="about-stat-label">Books & Collections</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">100+</div>
+            <div class="about-stat-label">Poems Written</div>
+          </div>
+          <div class="about-stat" style="border-bottom:none">
+            <div class="about-stat-num">3</div>
+            <div class="about-stat-label">Languages: Bhojpuri, Hindi & English</div>
+          </div>
+        </div>
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--dust);">
+          <div class="about-year">Based in Lucknow, India</div>
+          <div class="about-year" style="margin-top:0.5rem">Available for commissions & collaborations</div>
+        </div>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  CONTACT PAGE 
+    function renderContact() {
+      return `
+  <div class="page contact-page">
+    <div class="contact-hero">
+      <h1 class="contact-hero-title">Get in<br/><em>Touch</em></h1>
+    </div>
+    <div class="contact-body">
+      <div class="contact-form-col">
+        <div class="section-label">Send a Message</div>
+
+        <!-- STATUS BANNER -->
+        <div id="formStatus" style="display:none;padding:1rem 1.2rem;margin-bottom:1.5rem;font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.1em;border-left:3px solid var(--rust)"></div>
+
+        <div id="contactForm">
+          <div class="form-group">
+            <label class="form-label">Your Name *</label>
+            <input class="form-input" id="cf_name" type="text" placeholder="Full name" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input class="form-input" id="cf_email" type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone (optional)</label>
+            <input class="form-input" id="cf_phone" type="tel" placeholder="+91 XXXXX XXXXX" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Enquiry Type *</label>
+            <select class="form-input" id="cf_type" style="appearance:none;background:transparent;cursor:none">
+              <option value=""> Select </option>
+              <option>Commission (Photography)</option>
+              <option>Commission (Drawing)</option>
+              <option>Book / Publication</option>
+              <option>Exhibition / Collaboration</option>
+              <option>Workshop / Residency</option>
+              <option>General Enquiry</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Subject *</label>
+            <input class="form-input" id="cf_subject" type="text" placeholder="Brief subject line" />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Message *</label>
+            <textarea class="form-input" id="cf_message" placeholder="Tell me about your enquiry in detail..." style="min-height:160px"></textarea>
+          </div>
+          <button class="btn-submit" id="cf_submit" onclick="handleContactSubmit(event)">Send Message &rarr;</button>
+          <p style="font-family:var(--font-mono);font-size:0.6rem;color:var(--dust);margin-top:1rem;letter-spacing:0.08em">Your submission is saved securely to a private storage.</p>
+        </div>
+
+        <!-- SUCCESS STATE -->
+        <div id="formSuccess" style="display:none;padding:3rem 0">
+          <div style="font-family:var(--font-display);font-size:2.5rem;font-weight:900;color:var(--rust);margin-bottom:1rem">Message Sent.</div>
+          <p style="font-family:var(--font-body);font-size:1.05rem;color:var(--slate);line-height:1.8;max-width:400px">Thank you for reaching out. Shreyash will respond within 48 hours. A copy of your enquiry has been saved.</p>
+          <button class="btn-submit" style="margin-top:2rem" onclick="resetContactForm()">Send Another &rarr;</button>
+        </div>
+      </div>
+
+      <div class="contact-info-col">
+        <div class="section-label">Contact Info</div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Location</div>
+          <div class="contact-info-value">Lucknow, India</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">For Enquiries</div>
+          <div class="contact-info-value">shreyash5183@gmail.com</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Studio Visits/Commission Work</div>
+          <div class="contact-info-value">By appointment only</div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-label">Response Time</div>
+          <div class="contact-info-value">Usually within 48 hours</div>
+        </div>
+        <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid var(--dust)">
+          <div class="section-label">Areas of Interest</div>
+          <div style="display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem">
+            ${['Commissions', 'Collaborations', 'Exhibitions', 'Publications', 'Workshops', 'Residencies'].map(t => `
+              <span class="detail-tag">${t}</span>
+            `).join('')}
+          </div>
+        </div>
+        <div style="margin-top:3rem;padding:1.5rem;background:var(--cream);border-left:3px solid var(--gold)">
+          <div style="font-family:var(--font-mono);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust);margin-bottom:0.5rem">Data & Privacy</div>
+          <p style="font-family:var(--font-body);font-size:0.85rem;color:var(--slate);line-height:1.7">Your details are stored privately and is only accessible to Shreyash. They are never shared or sold.</p>
+        </div>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  DETAIL: PHOTOGRAPHY / ARTWORKS 
+    function renderArtDetail(item, type) {
+      return `
+  <div class="page detail-page">
+    <div class="detail-hero">
+      <div class="detail-image-side">
+        <img src="${item.full || item.thumb}" alt="${item.title}" />
+      </div>
+      <div class="detail-info-side">
+        <a href="#" class="detail-back" data-page="${type === 'artwork' ? 'artworks' : 'photography'}">Back to ${type === 'artwork' ? 'Artworks' : 'Photographs'}</a>
+        <div class="detail-eyebrow">${item.category}</div>
+        <h1 class="detail-title">${item.title}</h1>
+        <div class="detail-meta-row">
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">Year</span>
+            <span class="detail-meta-value">${item.year}</span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">Medium</span>
+            <span class="detail-meta-value">${item.medium}</span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">Dimensions</span>
+            <span class="detail-meta-value">${item.dimensions}</span>
+          </div>
+        </div>
+        <p class="detail-description">${item.description}</p>
+        <div class="detail-tags">
+          ${item.tags.map(t => `<span class="detail-tag">${t}</span>`).join('')}
+        </div>
+        <a href="#" class="btn" data-page="contact">Enquire About This Work →</a>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  DETAIL: POEM 
+    function renderPoemDetail(poem) {
+      return `
+  <div class="page" style="padding-top:var(--nav-h)">
+    <div style="background:var(--ink);padding:1rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.08)">
+      <a href="#" class="detail-back" data-page="poetry">Back to Poetry</a>
+    </div>
+    <div style="background:var(--ink);padding:3rem 2.5rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:30vh">
+      <div class="gallery-hero-eyebrow" style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.2em;color:var(--rust);text-transform:uppercase;margin-bottom:0.8rem">${poem.theme} · ${poem.year}</div>
+      <h1 class="gallery-hero-title" style="font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;color:var(--paper);line-height:1;letter-spacing:-0.03em">${poem.title}</h1>
+    </div>
+    <div class="poem-detail-content">
+      <div class="poem-full-text">
+        ${poem.fullText.split('\n\n').map(s => `<p>${s.replace(/\n/g, '<br/>')}</p>`).join('')}
+      </div>
+      ${poem.notes ? `
+      <div style="margin-top:4rem;padding-top:2rem;border-top:1px solid var(--dust)">
+        <div class="detail-eyebrow" style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:0.8rem">Poet's Note</div>
+        <p style="font-size:0.95rem;color:var(--slate);font-style:italic;line-height:1.8">${poem.notes}</p>
+      </div>
+      ` : ''}
+      <div style="margin-top:3rem;display:flex;gap:1rem">
+        <a href="#" class="btn" data-page="poetry">← All Poems</a>
+        <a href="#" class="btn" data-page="books">View Books →</a>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  DETAIL: ESSAY 
+    function renderEssayDetail(essay) {
+      return `
+  <div class="page" style="padding-top:var(--nav-h)">
+    <div style="background:var(--ink);padding:1rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.08)">
+      <a href="#" class="detail-back" data-page="essays">Back to Essays</a>
+    </div>
+    <div style="background:var(--ink);padding:3rem 2.5rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:30vh">
+      <div style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.2em;color:var(--rust);text-transform:uppercase;margin-bottom:0.8rem">${essay.type} · ${essay.date} · ${essay.readTime} read</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4.5vw,4rem);font-weight:900;color:var(--paper);line-height:1.05;letter-spacing:-0.02em;max-width:800px">${essay.title}</h1>
+    </div>
+    <div class="essay-detail">
+      <p style="font-family:var(--font-display);font-size:1.25rem;font-style:italic;color:var(--ink);line-height:1.6;margin-bottom:3rem;padding-bottom:2rem;border-bottom:1px solid var(--dust)">${essay.excerpt}</p>
+      <div class="essay-detail-body">${essay.body}</div>
+      <div style="margin-top:4rem;display:flex;gap:1rem">
+        <a href="#" class="btn" data-page="essays">← All Essays</a>
+        <a href="#" class="btn" data-page="contact">Respond →</a>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  DETAIL: LETTER 
+    function renderLetterDetail(letter) {
+      return `
+  <div class="page" style="padding-top:var(--nav-h)">
+    <div style="background:var(--ink);padding:1rem 2.5rem;border-bottom:1px solid rgba(255,255,255,0.08)">
+      <a href="#" class="detail-back" data-page="letters">Back to Letters &amp; Blogs</a>
+    </div>
+    <div style="background:var(--ink);padding:3rem 2.5rem 4rem;display:flex;flex-direction:column;justify-content:flex-end;min-height:25vh">
+      <div style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.2em;color:var(--rust);text-transform:uppercase;margin-bottom:0.8rem">${letter.type} · ${letter.date}</div>
+      <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3.5rem);font-weight:900;color:var(--paper);line-height:1.05;letter-spacing:-0.02em;max-width:700px">${letter.title}</h1>
+    </div>
+    <div class="essay-detail">
+      <div style="font-family:var(--font-mono);font-size:0.68rem;letter-spacing:0.15em;color:var(--rust);text-transform:uppercase;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid var(--dust)">${letter.recipient}</div>
+      <div class="essay-detail-body">${letter.body}</div>
+      <div style="margin-top:4rem;display:flex;gap:1rem">
+        <a href="#" class="btn" data-page="letters">← All Letters & Blogs</a>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  DETAIL: BOOK 
+    function renderBookDetail(book) {
+      const palette = BOOK_PALETTES[DATA.books.indexOf(book) % BOOK_PALETTES.length];
+      return `
+  <div class="page" style="padding-top:var(--nav-h)">
+    <div style="display:grid;grid-template-columns:1fr 1fr;min-height:80vh" class="book-detail-grid">
+      <div style="background:${palette.bg};display:flex;align-items:center;justify-content:center;padding:5rem;position:sticky;top:var(--nav-h);height:calc(100vh - var(--nav-h))" class="book-detail-cover">
+        <div style="width:100%;max-width:320px;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:3rem;border:1px solid ${palette.accent};text-align:center;gap:1.5rem">
+          <div style="font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.25em;text-transform:uppercase;color:${palette.accent}">${book.genre}</div>
+          <div style="font-family:var(--font-display);font-size:2rem;font-weight:900;font-style:italic;line-height:1.15;color:${palette.text}">${book.title}</div>
+          <div style="width:40px;height:1px;background:${palette.accent}"></div>
+          <div style="font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.12em;color:${palette.accent}">Shreyash Srivastva · ${book.year}</div>
+        </div>
+      </div>
+      <div style="padding:5rem 4rem;border-left:1px solid var(--dust)">
+        <a href="#" class="detail-back" data-page="books">Back to Books</a>
+        <div class="detail-eyebrow" style="margin-top:1rem">${book.genre}</div>
+        <h1 class="detail-title">${book.title}</h1>
+        <div class="detail-meta-row">
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">Year</span>
+            <span class="detail-meta-value">${book.year}</span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">Publisher</span>
+            <span class="detail-meta-value">${book.publisher}</span>
+          </div>
+          <div class="detail-meta-item">
+            <span class="detail-meta-label">Pages</span>
+            <span class="detail-meta-value">${book.pages}</span>
+          </div>
+        </div>
+        <p class="detail-description">${book.description}</p>
+        <blockquote style="border-left:3px solid var(--rust);padding-left:1.5rem;font-style:italic;color:var(--slate);line-height:1.8;margin:2rem 0;font-size:1rem">${book.excerpt}</blockquote>
+        <a href="#" class="btn" data-page="contact">Request a Copy →</a>
+      </div>
+    </div>
+    ${renderFooter()}
+  </div>`;
+    }
+
+    //  FOOTER 
+    function renderFooter() {
+      return `
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">Shreyash<br/>Srivastva</div>
+        <div class="footer-brand-sub" style="margin-top:1rem">Artist & Writer<br/>Lucknow, India · 2018–Forever</div>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col">
+        <div class="footer-col-title">Studio</div>
+        <a href="#" data-page="about">About</a>
+        <a href="#" data-page="contact">Contact</a>
+      </div>
+      <div class="footer-col-title">Visual Works</div>
+        <a href="#" data-page="photography">Photography</a>
+        <a href="#" data-page="artworks">Artworks</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Writing</div>
+        <a href="#" data-page="poetry">Poetry</a>
+        <a href="#" data-page="books">Books</a>
+        <a href="#" data-page="essays">Essays</a>
+        <a href="#" data-page="letters">Letters & Blogs</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Shreyash Srivastva. All rights reserved.</span>
+      <span>Lucknow, India</span>
+    </div>
+  </footer>`;
+    }
+
+    // ============================================
+    // APP.JS, SHREYASH SRIVASTVA GALLERY
+    // ============================================
+
+    // Filter buttons
+    function applyFilter(filter) {
+      document.querySelectorAll('.masonry-item').forEach(item => {
+        const categories = item.dataset.category.split(',').map(c => c.trim());
+        if (filter === 'all' || categories.includes(filter)) {
+          item.style.opacity = '1';
+          item.style.pointerEvents = 'auto';
+          item.style.filter = 'grayscale(15%)';
+        } else {
+          item.style.opacity = '0.2';
+          item.style.pointerEvents = 'none';
+        }
+      });
+    }
+
+    //  STATE 
+    let currentPage = 'home';
+    let menuOpen = false;
+
+    //  DOM REFS 
+    const app = document.getElementById('app');
+    const nav = document.getElementById('nav');
+    const menuBtn = document.getElementById('menuBtn');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursorFollower');
+
+    //  CURSOR 
+    let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    });
+
+    function animateFollower() {
+      followerX += (mouseX - followerX) * 0.12;
+      followerY += (mouseY - followerY) * 0.12;
+      cursorFollower.style.left = followerX + 'px';
+      cursorFollower.style.top = followerY + 'px';
+      requestAnimationFrame(animateFollower);
+    }
+    animateFollower();
+
+    //  SCROLL NAV 
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    //  MENU TOGGLE 
+    menuBtn.addEventListener('click', toggleMenu);
+
+    function toggleMenu() {
+      menuOpen = !menuOpen;
+      menuBtn.classList.toggle('active', menuOpen);
+      menuOverlay.classList.toggle('open', menuOpen);
+      document.body.style.overflow = menuOpen ? 'hidden' : '';
+    }
+
+    function closeMenu() {
+      menuOpen = false;
+      menuBtn.classList.remove('active');
+      menuOverlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    //  ROUTER 
+    function navigate(page, opts = {}) {
+      closeMenu();
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      currentPage = page;
+
+      let html = '';
+
+      if (opts.type && opts.id) {
+        // Detail pages
+        const { type, id } = opts;
+        if (type === 'photography') {
+          const item = DATA.photographs.find(p => p.id === id);
+          if (item) html = renderArtDetail(item, 'photography');
+        } else if (type === 'artwork') {
+          const item = DATA.artworks.find(a => a.id === id);
+          if (item) html = renderArtDetail(item, 'artwork');
+        } else if (type === 'poem') {
+          const item = DATA.poems.find(po => po.id === id);
+          if (item) html = renderPoemDetail(item);
+        } else if (type === 'essay') {
+          const item = DATA.essays.find(e => e.id === id);
+          if (item) html = renderEssayDetail(item);
+        } else if (type === 'letter') {
+          const item = DATA.letters.find(l => l.id === id);
+          if (item) html = renderLetterDetail(item);
+        } else if (type === 'book') {
+          const item = DATA.books.find(b => b.id === id);
+          if (item) html = renderBookDetail(item);
+        }
+      } else {
+        switch (page) {
+          case 'home': html = renderHome(); break;
+          case 'photography': html = renderPhotography(); break;
+          case 'artworks': html = renderArtworks(); break;
+          case 'poetry': html = renderPoetry(); break;
+          case 'books': html = renderBooks(); break;
+          case 'essays': html = renderEssays(); break;
+          case 'letters': html = renderLetters(); break;
+          case 'about': html = renderAbout(); break;
+          case 'contact': html = renderContact(); break;
+          default: html = renderHome();
+        }
+      }
+
+      app.innerHTML = html;
+      bindEvents();
+      setTimeout(() => {
+        if (typeof applyFilter === 'function') applyFilter('all');
+      }, 300);
+    }
+
+    //  BIND EVENTS 
+    function bindEvents() {
+      // Nav logo
+      document.querySelectorAll('[data-page]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          navigate(el.dataset.page);
+        });
+      });
+
+      // Detail links
+      document.querySelectorAll('[data-nav="detail"]').forEach(el => {
+        el.addEventListener('click', e => {
+          e.preventDefault();
+          navigate(el.dataset.type + '-detail', {
+            type: el.dataset.type,
+            id: el.dataset.id
+          });
+        });
+      });
+
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          document.querySelectorAll('.masonry-item').forEach(item => {
+            const cats = item.dataset.category || '';
+            const match = filter === 'all' || cats.split(',').map(c => c.trim()).includes(filter);
+            item.style.opacity = match ? '1' : '0.2';
+            item.style.pointerEvents = match ? 'auto' : 'none';
+          });
+        });
+      });
+
+      // force run after DOM settles
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          document.querySelectorAll('.masonry-item').forEach(item => {
+            item.style.opacity = '1';
+            item.style.pointerEvents = 'auto';
+          });
+        });
+      });
+
+    }
+
+    //  HOVER EFFECTS ON INTERACTIVE ELEMENTS 
+    document.addEventListener('mouseover', e => {
+      if (e.target.closest('a, button, [data-nav], .cat-card, .masonry-item, .poem-card, .essay-card, .letter-card, .book-card')) {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2)';
+      }
+    });
+    document.addEventListener('mouseout', e => {
+      if (e.target.closest('a, button, [data-nav], .cat-card, .masonry-item, .poem-card, .essay-card, .letter-card, .book-card')) {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      }
+    });
+
+    //  MENU LINKS 
+    document.querySelectorAll('.menu-link').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        navigate(link.dataset.page);
+      });
+    });
+
+    document.querySelector('.nav-logo').addEventListener('click', e => {
+      e.preventDefault();
+      navigate('home');
+    });
+
+    //  SCROLL REVEAL 
+    function initScrollReveal() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.masonry-item, .poem-card, .essay-card, .letter-card, .book-card, .writing-item, .cat-card').forEach((el, i) => {
+        if (!el.classList.contains('filter-hidden')) {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(32px)';
+          el.style.transition = `opacity 0.6s ease ${i * 0.06}s, transform 0.6s ease ${i * 0.06}s`;
+          observer.observe(el);
+        }
+      });
+    }
+
+    //  MutationObserver for scroll reveal after DOM updates 
+    const appObserver = new MutationObserver(() => {
+      setTimeout(initScrollReveal, 50);
+    });
+    appObserver.observe(app, { childList: true, subtree: false });
+
+    //  INIT 
+    navigate('home');
+
+    // ============================================================
+    // GOOGLE APPS SCRIPT INTEGRATION
+    //  PASTE YOUR APPS SCRIPT URL BELOW 
+    // ============================================================
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEao3OlcUZYoGa0u3tds2lNOQdtdAS9-UgCq--kwTcNcbd2iE0_iP6mUIcLsppu7tX/exec';
+    // ============================================================
+
+    //  Helpers 
+    function gid(id) { return document.getElementById(id); }
+    function showStatus(msg, color) {
+      const s = gid('formStatus');
+      if (!s) return;
+      s.style.display = 'block';
+      s.style.borderColor = color || 'var(--rust)';
+      s.style.color = color || 'var(--rust)';
+      s.textContent = msg;
+    }
+    function hideStatus() { const s = gid('formStatus'); if (s) s.style.display = 'none'; }
+
+    //  Main submit function 
+    function handleContactSubmit(e) {
+      if (e) { e.preventDefault(); e.stopPropagation(); }
+
+      const val = id => { const el = gid(id); return el ? el.value.trim() : ''; };
+
+      const name = val('cf_name');
+      const email = val('cf_email');
+      const phone = val('cf_phone');
+      const type = val('cf_type');
+      const subject = val('cf_subject');
+      const message = val('cf_message');
+      const btn = gid('cf_submit');
+
+      //  Validate 
+      if (!name || !email || !subject || !message || !type) {
+        showStatus('Please fill in all required fields marked with *.', 'var(--rust)');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('Please enter a valid email address.', 'var(--rust)');
+        return;
+      }
+      if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
+        showStatus('Setup needed: replace YOUR_APPS_SCRIPT_URL_HERE in the HTML with your Apps Script URL.', 'orange');
+        return;
+      }
+
+      //  Loading state 
+      if (btn) { btn.textContent = 'Sending...'; btn.disabled = true; btn.style.opacity = '0.5'; }
+      hideStatus();
+
+      const timestamp = new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' });
+
+      //  METHOD: hidden form POST via iframe (guaranteed delivery, no CORS issues) 
+      // This is the most reliable way to POST to Apps Script from a plain HTML file.
+      // It submits a real HTML form to a hidden iframe, Apps Script receives it perfectly.
+
+      // Create hidden iframe to absorb the response (so page doesn't navigate)
+      let iframe = gid('gs_iframe');
+      if (!iframe) {
+        iframe = document.createElement('iframe');
+        iframe.name = 'gs_iframe';
+        iframe.id = 'gs_iframe';
+        iframe.style.cssText = 'display:none;width:0;height:0;border:0;position:absolute;';
+        document.body.appendChild(iframe);
+      }
+
+      // Create hidden form
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = APPS_SCRIPT_URL;
+      form.target = 'gs_iframe';   // submit INTO the iframe, page stays put
+      form.style.display = 'none';
+
+      // Add fields, prefix phone with apostrophe so Sheets treats it as text
+      const fields = { name, email, phone: "'" + phone, type, subject, message, timestamp, page: 'Contact Form' };
+      Object.entries(fields).forEach(([k, v]) => {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = k;
+        input.value = v;
+        form.appendChild(input);
+      });
+
+      document.body.appendChild(form);
+
+      // Listen for iframe load = Apps Script responded = success
+      iframe.onload = function () {
+        // Clean up the form
+        if (form.parentNode) form.parentNode.removeChild(form);
+
+        // Show success, hide the contact form
+        const contactDiv = gid('contactForm');
+        const successDiv = gid('formSuccess');
+        if (contactDiv) contactDiv.style.display = 'none';
+        if (successDiv) {
+          successDiv.style.display = 'block';
+          successDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        // Reset button just in case
+        if (btn) { btn.textContent = 'Send Message \u2192'; btn.disabled = false; btn.style.opacity = '1'; }
+        iframe.onload = null; // remove listener
+      };
+
+      // Fallback: if iframe doesn't fire onload in 8s, still show success
+      setTimeout(function () {
+        const contactDiv = gid('contactForm');
+        const successDiv = gid('formSuccess');
+        if (successDiv && successDiv.style.display === 'none') {
+          if (contactDiv) contactDiv.style.display = 'none';
+          successDiv.style.display = 'block';
+        }
+        if (btn) { btn.textContent = 'Send Message \u2192'; btn.disabled = false; btn.style.opacity = '1'; }
+        if (form.parentNode) form.parentNode.removeChild(form);
+      }, 8000);
+
+      // Submit the form
+      form.submit();
+    }
+
+    // ——— Reset / Send Another ———
+    function resetContactForm() {
+      const contactDiv = gid('contactForm');
+      const successDiv = gid('formSuccess');
+      const btn = gid('cf_submit');
+
+      if (successDiv) successDiv.style.display = 'none';
+      if (contactDiv) {
+        contactDiv.style.display = 'block';
+        contactDiv.querySelectorAll('input, textarea, select').forEach(el => el.value = '');
+        contactDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      if (btn) { btn.textContent = 'Send Message \u2192'; btn.disabled = false; btn.style.opacity = '1'; }
+      hideStatus();
+    }
+
+  </script>
+</body>
+
+</html>
