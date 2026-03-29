@@ -123,6 +123,21 @@
       border-bottom: 1px solid var(--dust);
     }
 
+    .masonry-item-link::after {
+      content: '↗ Interactive';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-family: var(--font-mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: var(--gold);
+      color: var(--ink);
+      padding: 0.2rem 0.5rem;
+      z-index: 2;
+    }
+
     .nav-logo {
       font-family: var(--font-display);
       font-weight: 900;
@@ -2572,7 +2587,8 @@
       // { "id": "p5", "title": "Ruins of Belonging", "year": "2022", "medium": "Acrylic and charcoal", "dimensions": "40 x 30 inches", "category": "Mixed Media", "tags": ["architecture", "memory", "loss"], "description": "Crumbling Nawabi architecture rendered in desaturated greens and greys, with passages of charcoal that suggest dissolution. The work meditates on cultural amnesia and the architectural erasure of Awadhi heritage.", "thumb": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=600&q=80", "full": "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=1200&q=90" },
       // { "id": "p6", "title": "The Quiet Hours", "year": "2024", "medium": "Gouache on board", "dimensions": "16 x 12 inches", "category": "Gouache", "tags": ["interior", "solitude", "light"], "description": "A small, intimate study of morning light entering an empty room. The diffused quality of early light through muslin curtains creates a haze that softens every edge. A painting about the hour before the world makes its demands.", "thumb": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=600&q=80", "full": "https://images.unsplash.com/photo-1536924940846-227afb31e2a5?w=1200&q=90" }
       "artworks": [
-        { "id": "a1", "title": "Residual Identity", "year": "2026", "medium": "Digital Art", "dimensions": "Variable", "category": "Abstract", "tags": ["abstract", "psychedelic", "pareidolia", "identity", "surreal"], "description": "A fleeting presence emerges within fluid gradients of magenta and yellow, something trying to become someone. The form suggests a face, but dissolves upon focus, as if he was there until you looked. Soft transitions and drifting contours evoke the instability of perception, where identity exists only momentarily, suspended between recognition and absence.", "thumb": "Images/IMG_28-03.png?w=600&q=80", "full": "Images/IMG_ResiduesOfIdentity.png?w=1200&q=90" },],
+        { "id": "a1", "title": "Residual Identity", "year": "2026", "medium": "Digital Art", "dimensions": "Variable", "category": "Abstract", "tags": ["abstract", "psychedelic", "pareidolia", "identity", "surreal"], "description": "A fleeting presence emerges within fluid gradients of magenta and yellow, something trying to become someone. The form suggests a face, but dissolves upon focus, as if he was there until you looked. Soft transitions and drifting contours evoke the instability of perception, where identity exists only momentarily, suspended between recognition and absence.", "thumb": "Images/IMG_28-03.png?w=600&q=80", "full": "Images/IMG_28-03.png?w=1200&q=90" },
+        { "id": "a2", "title": "Smoke & Mirrors", "year": "2026", "medium": "WebGL Interactive", "dimensions": "Variable", "category": "Interactive", "tags": ["webgl", "interactive", "abstract", "psychedelic","generative"], "description": "An interactive WebGL experience where you become the artist. Move your cursor to generate fluid, smoky patterns in real time. A meditation on chaos, control and the beauty of emergence.", "thumb": "Images/IMG2026-03-28201525.png", "full": "Images/IMG2026-03-28201525.png", "link": "https://dowebgl.vercel.app/" },],
       // { "id": "a2", "title": "Study of Hands Series I", "year": "2023", "medium": "Graphite on cartridge paper", "dimensions": "14 x 11 inches", "category": "Graphite Study", "tags": ["anatomy", "hands", "study"], "description": "A series of graphite studies exploring the expressive potential of the human hand. Each drawing renders the subject at different states of tension and repose. Twelve sheets, shown here as the first in sequence.", "thumb": "https://images.unsplash.com/photo-1531685250784-7569952593d2?w=600&q=80", "full": "https://images.unsplash.com/photo-1531685250784-7569952593d2?w=1200&q=90" },
       // { "id": "a3", "title": "City Margins", "year": "2022", "medium": "Pen and ink on paper", "dimensions": "18 x 24 inches", "category": "Ink Drawing", "tags": ["urban", "lucknow", "architecture"], "description": "A dense pen-and-ink rendering of Lucknow's old city lanes, rickshaws, chai stalls, the fraying electric wires overhead. Drawn over several weeks from observation, not memory, it documents a city in quiet transition.", "thumb": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80", "full": "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=1200&q=90" },
       // { "id": "a4", "title": "Portrait of a Stranger", "year": "2024", "medium": "Charcoal on paper", "dimensions": "22 x 17 inches", "category": "Charcoal", "tags": ["portrait", "charcoal", "face"], "description": "A large charcoal portrait of an unknown figure encountered briefly. The face emerges from deep shadow, its features half-resolved as if being remembered rather than observed. The smudging is intentional, a representation of the unreliable witness.", "thumb": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=600&q=80", "full": "https://images.unsplash.com/photo-1509909756405-be0199881695?w=1200&q=90" },
@@ -2619,8 +2635,8 @@
       const heroTiles = [
         { img: DATA.photographs[0].thumb, label: 'Photography' },
         { img: DATA.artworks[0].thumb, label: 'Artworks' },
-        { img: 'Images/IMG_2026-03-291715510.png', label: 'Poetry' },
-        { img: 'Images/IMG_29-03-202617_04_25.png', label: 'Writing' }
+        { img: 'Images/IMG_29-03-202617_04_25.png', label: 'Writing' },
+        { img: 'Images/IMG_2026-03-291715510.png', label: 'Poetry' }
       ];
 
       const marqueeText = 'Photography &nbsp;·&nbsp; Artworks &nbsp;·&nbsp; Poetry &nbsp;·&nbsp; Books &nbsp;·&nbsp; Essays &nbsp;·&nbsp; Letters &nbsp;·&nbsp; Blogs &nbsp;·&nbsp; Art &nbsp;·&nbsp; Lucknow &nbsp;·&nbsp; ';
@@ -2797,14 +2813,14 @@
     <div class="masonry-section">
       <div class="masonry-grid" id="artworksGrid">
         ${DATA.artworks.map(a => `
-          <div class="masonry-item" data-nav="detail" data-type="artwork" data-id="${a.id}" data-category="${a.category}">
-            <img src="${a.thumb}" alt="${a.title}" loading="lazy" />
-            <div class="masonry-overlay">
-              <div class="masonry-overlay-cat">${a.category} · ${a.year}</div>
-              <div class="masonry-overlay-title">${a.title}</div>
-            </div>
-          </div>
-        `).join('')}
+  <div class="masonry-item" data-nav="detail" data-type="artwork" data-id="${a.id}" data-category="${Array.isArray(a.category) ? a.category.join(',') : a.category}">
+    <img src="${a.thumb}" alt="${a.title}" loading="lazy" />
+    <div class="masonry-overlay">
+      <div class="masonry-overlay-cat">${a.category} · ${a.year}</div>
+      <div class="masonry-overlay-title">${a.title}</div>
+    </div>
+  </div>
+`).join('')}
       </div>
     </div>
     ${renderFooter()}
@@ -3097,10 +3113,11 @@
           </div>
         </div>
         <p class="detail-description">${item.description}</p>
+${item.link ? `<p style="margin-bottom:2rem"><a href="${item.link}" target="_blank" style="font-family:var(--font-mono);font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--rust)">Live</a></p>` : ''}
         <div class="detail-tags">
           ${item.tags.map(t => `<span class="detail-tag">${t}</span>`).join('')}
         </div>
-        <a href="#" class="btn" data-page="contact">Enquire About This Work →</a>
+        <a href="#" class="btn" data-page="contact">Enquire About This Work →</a>${item.link ? `<a href="${item.link}" target="_blank" class="btn light" style="margin-left:1rem">Experience It Live ↗</a>` : ''}
       </div>
     </div>
     ${renderFooter()}
